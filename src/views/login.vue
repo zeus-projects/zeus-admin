@@ -13,7 +13,7 @@
           <span>账号密码登录</span>
           <span class="line"></span>
       </div>
-      <el-form ref="formRef" :rules="rules" :model="form" class="w-[250px]">
+      <el-form ref="formRef" :rules="rules" :model="form" class="w-[250px]" @keyup.enter.native="onSubmit">
         <el-form-item prop="username">
           <el-input v-model="form.username" placeholder="请输入用户名">
             <template #prefix>
@@ -37,7 +37,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, h } from 'vue'
+import { ref, reactive, onMounted, onBeforeUnmount } from 'vue'
 import { useRouter } from 'vue-router';
 import { notifySuccess, notifyError } from "@/util/notify";
 import { useUserStore } from "@/store/user";
@@ -90,6 +90,23 @@ const onSubmit = () => {
     }
   })
 }
+
+// enter 键提交表单
+// - 方式一：el-form 添加 @keyup.enter.native="onSubmit" 属性（需要先选中表单）
+// - 方式二：挂载监听事件，如下所示
+// function onKeyUp(e) {
+//   if (e.key === "Enter") {
+//     onSubmit()
+//   }
+// }
+// onMounted(() => {
+//   document.addEventListener("keyup", onKeyUp)
+// })
+
+// onBeforeUnmount(() => {
+//   document.removeEventListener("keyup", onKeyUp)
+// })
+
 </script>
 
 <style scoped>
