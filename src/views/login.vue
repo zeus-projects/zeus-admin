@@ -29,7 +29,7 @@
           </el-input>
         </el-form-item>
         <el-form-item>
-          <el-button round type="primary" @click="onSubmit" class="w-[250px]" color="#626aef">登录</el-button>
+          <el-button round type="primary" @click="onSubmit" class="w-[250px]" color="#626aef" :loading="loading">登录</el-button>
         </el-form-item>
       </el-form>
     </el-col>
@@ -37,10 +37,10 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
-import { ElNotification } from 'element-plus'
-import { login } from '@/api/auth.js'
+import { ref, reactive, h } from 'vue'
 import { useRouter } from 'vue-router';
+import { notifySuccess, notifyError } from "@/util/notify";
+import { useUserStore } from "@/store/user";
 
 const form = reactive({
   username: '',
@@ -68,47 +68,25 @@ const rules = {
 }
 
 const formRef = ref(null)
-
+const loading = ref(false)
 const router = useRouter();
+const userStore = useUserStore()
+
 const onSubmit = () => {
   formRef.value.validate((valid)=>{
     if (!valid) {
-      ElNotification({
-        title: 'Error',
-        message: '校验不通过，请检查输入！',
-        type: 'error',
-      })
+      notifyError('校验不通过，请检查输入！', 'error')
       return false;
     } else {
-      // 发送登录请求
-      login(form.username, form.password)
-      .then(function (response) {
-        console.log(response);
-        if (response.status === 200) {
-          // 1. 提示登录成功
-          ElNotification({
-            message: '登录成功！',
-            type: 'success',
-            duration: 1500
-          })
-          // 2. 存储 token 和用户信息
-          // 3. 跳转到后台首页
-          router.push("/")
-        } else {
-          ElNotification({
-            message: response.data.msg,
-            type: 'error',
-            duration: 1500
-          })
-        }
+      loading.value = true;
+      userStore.login(form)
+      .then(()=>{
+        notifySuccess('登录成功')
+        router.push("/")
       })
-      .catch(function (error) {
-        ElNotification({
-          message: error.response.data.msg || "请求失败",
-          type: 'error',
-          duration: 1500
-        })
-      });
+      .finally(() => {
+        loading.value = false;
+      })
     }
   })
 }
@@ -140,11 +118,11 @@ const onSubmit = () => {
   @apply font-bold text-3xl text-gray-800;
 }
 
-.right>div:first-child {
+.right>div {
   @apply flex items-center justify-center my-5 text-gray-300 space-x-2;
 }
 
-.line {
+.right .line {
   @apply h-[1px] w-16 bg-gray-200;
 }
 </style>

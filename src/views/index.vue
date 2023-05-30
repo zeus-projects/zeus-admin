@@ -1,23 +1,13 @@
 <template>
-  <div>
-    <el-button type="primary" @click="addCount">count: {{ count }}</el-button>
-    <el-button type="primary" @click="addcount2">form.count: {{ form.count }}</el-button>
+  <div class="flex items-center justify-center min-h-screen space-x-5">
+    <el-button type="primary" @click="$alert(getToken)">显示 token</el-button>
+    <router-link to="/login" @click="removeToken">
+       <el-button type="primary">退出登录</el-button>
+    </router-link>
   </div>
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
+import { getToken, removeToken } from '@/util/auth'
 
-let count = ref(0);
-function addCount() {
-  count.value++;
-}
-
-const form = reactive({
-  count: 0
-})
-
-function  addcount2() {
-  form.count++;
-}
 </script>
