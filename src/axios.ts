@@ -1,6 +1,7 @@
 import axios from "axios";
-import { notifyError } from "@/util/notify"
-import { getToken } from '@/util/auth'
+import { useNotification } from "@/hooks/message"
+import { useToken } from '@/hooks/auth'
+import { useUserStore } from "./store/user";
 
 // axios 实例
 const axiosInstance = axios.create({
@@ -8,9 +9,10 @@ const axiosInstance = axios.create({
    timeout: 3000,
 });
 
+
 // 请求拦截器
 axiosInstance.interceptors.request.use(function (config) {
-   const token = getToken()
+   const token = useToken().getToken()
    // 如果已经登录，请求时带上 token
    if (token) {
       config.headers["token"] = token;
@@ -25,7 +27,12 @@ axiosInstance.interceptors.request.use(function (config) {
 axiosInstance.interceptors.response.use(function (response) {
    return response.data.data;
 }, function (error) {
-   notifyError(error.response.data.msg || "请求失败", 'error')
+   const msg = error.response.data.msg || "请求失败"
+   if (msg == "非法token，请先登录！") {
+      useUserStore().logout()
+      location.reload()
+   }
+   useNotification().error(msg)
    return Promise.reject(error);
 });
 

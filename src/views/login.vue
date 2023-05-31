@@ -39,7 +39,7 @@
 <script setup>
 import { ref, reactive, onMounted, onBeforeUnmount } from 'vue'
 import { useRouter } from 'vue-router';
-import { notifySuccess, notifyError } from "@/util/notify";
+import { useMessage } from "@/hooks/message";
 import { useUserStore } from "@/store/user";
 
 const form = reactive({
@@ -75,13 +75,13 @@ const userStore = useUserStore()
 const onSubmit = () => {
   formRef.value.validate((valid)=>{
     if (!valid) {
-      notifyError('校验不通过，请检查输入！', 'error')
+      useMessage().error('请检查正确的用户名和密码')
       return false;
     } else {
       loading.value = true;
       userStore.login(form)
       .then(()=>{
-        notifySuccess('登录成功')
+        useMessage().success("登录成功")
         router.push("/")
       })
       .finally(() => {

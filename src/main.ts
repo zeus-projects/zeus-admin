@@ -6,6 +6,7 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import 'virtual:windi.css'
 import router from "./router";
 import pinia from '@/store'
+import "nprogress/nprogress.css"
 
 const app = createApp(App)
 
