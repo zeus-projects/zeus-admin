@@ -40,7 +40,7 @@
 import { ref, reactive, onMounted, onBeforeUnmount } from 'vue'
 import { useRouter } from 'vue-router';
 import { useMessage } from "@/hooks/message";
-import { useUserStore } from "@/store/user";
+import { useLoginStore } from "@/store/userInfo";
 
 const form = reactive({
   username: '',
@@ -70,7 +70,7 @@ const rules = {
 const formRef = ref(null)
 const loading = ref(false)
 const router = useRouter();
-const userStore = useUserStore()
+const userStore = useLoginStore()
 
 const onSubmit = () => {
   formRef.value.validate((valid)=>{
@@ -109,7 +109,7 @@ const onSubmit = () => {
 
 </script>
 
-<style scoped>
+<style scoped lang="postcss">
 
 .login-container {
   @apply min-h-screen bg-indigo-500;

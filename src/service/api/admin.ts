@@ -1,4 +1,4 @@
-import axios from '@/axios'
+import axios from '@/service/axios'
 
 export function login(username, password) {
    return axios.post("/admin/login", {

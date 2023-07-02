@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useNotification } from "@/hooks/message"
-import { useToken } from '@/hooks/auth'
-import { useUserStore } from "./store/user";
+import { useToken } from '@/hooks/token'
+import { useLoginStore } from "../store/userInfo";
 
 // axios 实例
 const axiosInstance = axios.create({
@@ -29,7 +29,7 @@ axiosInstance.interceptors.response.use(function (response) {
 }, function (error) {
    const msg = error.response.data.msg || "请求失败"
    if (msg == "非法token，请先登录！") {
-      useUserStore().logout()
+      useLoginStore().logout()
       location.reload()
    }
    useNotification().error(msg)
