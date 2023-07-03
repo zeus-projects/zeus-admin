@@ -1,99 +1,80 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import { useToken, useNotification, showFullLoading, hideFullLoading } from '@/hooks'
-import { useLoginStore } from '@/store/userInfo';
-import Login from '@/views/login.vue'
-import NotFound from '@/views/error/404.vue'
-import Admin from "@/layouts/admin.vue"
+import { useUserInfoStore } from '@/store/userInfo'
+import { routes, dynamicRoutes } from "./route";
 
-const dynamicRoutes = [
-   {
-      path: '/',
-      name: 'admin',
-      component: Admin,
-   },
-   {
-      path: '/login',
-      name: '登录页面',
-      component: Login,
-      meta: {
-         title: "登录页面"
-      }
-   },
-   {
-      path: '/:pathMatch(.*)*',
-      name: 'NotFound',
-      component: NotFound,
-      meta: {
-         title: "404"
-      }
-   }
-]
-
-// router 实例
+/**
+ * router 实例
+ */
 export const router = createRouter({
    // 内部提供了 history 模式的实现。为了简单起见，我们在这里使用 hash 模式。
    history: createWebHashHistory(),
-   routes: dynamicRoutes
+   routes: routes
 })
 
-export function addRoutes(menus: Number[]) {
-   console.log(menus);
-   let refresh = false
-   const findAndAddRoutesByMenus = (arr) => {
+/**
+ * 添加动态路由
+ * @param menus 菜单
+ * @returns 是否更新了动态路由
+ */
+export function addRoutes(menus) {
+   let hasNewRoute = false
+   const findAndAddRoutes = (arr) => {
       arr.forEach(e => {
-         // 判断是否存在该路由
+         // 判断动态路由表中是否有这个菜单，比如要存在，才能跳转到具体的组件，从而加载页面
          let item = dynamicRoutes.find(o => o.path == e.frontpath)
-         if (item && router.hasRoute(item.path)) {
-            // 存在就添加到路由中
-            router.addRoute("admin", item)
-            refresh = true
+         // 存在实际的组件，且该路由未被添加
+         if (item && !router.hasRoute(item.path)) {
+            // 添加到根路由下
+            router.addRoute('root', item)
+            hasNewRoute = true
          }
-         // 判断是否有子路由，有则也加入路由
+         // 递归遍历子菜单
          if (e.child && e.child.length > 0) {
-            findAndAddRoutesByMenus(e.child)
+            findAndAddRoutes(e.child)
          }
       })
    }
-   findAndAddRoutesByMenus(menus)
-   console.log('router.getRoutes():');
-   console.log(router.getRoutes());
-   return refresh
+   findAndAddRoutes(menus)
+   return hasNewRoute
 }
 
-// 导航守卫
-router.beforeEach((to, from, next) => {
+/**
+ * 导航守卫
+ */
+let hasGetInfo = false
+router.beforeEach(async (to, from, next) => {
    // loading
    showFullLoading()
    const token = useToken().getToken()
-   const authStore = useLoginStore()
-   // 未登录跳转至登录
+   const authStore = useUserInfoStore()
+
+   // 未登录强制跳转至登录页面
    if (!token && to.path != "/login") {
       useNotification().error("请先登录！")
+      hasGetInfo = false
       return next({ path: "/login" })
    }
-   // 防止重复登录
+
+   // 已登陆时访问登录页跳转至首页，防止重复登录
    if (token && to.path == "/login") {
       return next({ path: from.path ? from.path : "/" })
    }
-   // 初始化动态路由
-   let refresh = false
-   console.log(token);
-   if (token) {
-      console.log('初始化动态路由');
-      authStore.setUserInfo().then((res: any) => {
-         console.log(res);
-         refresh = addRoutes(res.menus)
-      })
+
+   // 添加动态路由
+   let hasNewRoute = false
+   if (token && !hasGetInfo) {
+      await authStore.setUserInfo()
+      hasNewRoute = addRoutes(authStore.user.menus)
+      hasGetInfo = true
    }
    // 根据路由信息设置页面的 title
-   let title = (to.meta.title ? to.meta.title : "") + "-ZeusAdmin"
+   let title = (to.meta.title ? to.meta.title : "Default") + "-ZeusAdmin"
    document.title = title
-   // 跳转路由
-   refresh ? next(to.fullPath) : next()
+   hasNewRoute ? next(to.fullPath) : next()
 })
 
 router.afterEach(() => {
    // 关闭 loading
    hideFullLoading()
 })
-

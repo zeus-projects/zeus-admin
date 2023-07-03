@@ -40,7 +40,7 @@
 import { ref, reactive, onMounted, onBeforeUnmount } from 'vue'
 import { useRouter } from 'vue-router';
 import { useMessage } from "@/hooks/message";
-import { useLoginStore } from "@/store/userInfo";
+import { useUserInfoStore } from "@/store/userInfo";
 
 const form = reactive({
   username: '',
@@ -70,7 +70,7 @@ const rules = {
 const formRef = ref(null)
 const loading = ref(false)
 const router = useRouter();
-const userStore = useLoginStore()
+const userStore = useUserInfoStore()
 
 const onSubmit = () => {
   formRef.value.validate((valid)=>{

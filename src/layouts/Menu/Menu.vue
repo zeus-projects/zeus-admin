@@ -43,13 +43,13 @@ import { computed } from 'vue'
 import { useRouter } from "vue-router";
 import { useRoute } from 'vue-router';
 import { useThemeConfig } from '@/store/themeConfig';
-import { useLoginStore } from '@/store/userInfo';
+import { useUserInfoStore } from '@/store/userInfo';
 
 const router = useRouter();
 const route = useRoute()
 // 默认选中当前路由路径
 const defaultActive = ref(route.path)
-const asideMenus = useLoginStore().menus
+const asideMenus = useUserInfoStore().user.menus
 const handleSelect = (path) => router.push(path)
 </script>
 

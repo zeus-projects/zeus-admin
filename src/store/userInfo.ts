@@ -2,8 +2,8 @@ import { defineStore } from 'pinia'
 import { getInfo, login as loginApi } from '@/service/api/admin'
 import { useToken } from '@/hooks/token'
 
-// https://seb-l.github.io/pinia-plugin-persist/
-export const useLoginStore = defineStore('userInfo', {
+// 持久化参考 https://seb-l.github.io/pinia-plugin-persist
+export const useUserInfoStore = defineStore('userInfo', {
    state: () => ({
       user: {
          menus: [],

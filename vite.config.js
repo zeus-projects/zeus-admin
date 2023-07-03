@@ -12,7 +12,8 @@ export default defineConfig({
     open: true, //启动后是否自动打开浏览器
     proxy: {
       '/api': {
-        target: 'http://ceshi13.dishait.cn',
+         // target: 'http://shopadmin.dishawang.com',
+          target: 'http://ceshi13.dishait.cn',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '')
       }
