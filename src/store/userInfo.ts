@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { getInfo, login as loginApi } from '@/service/api/admin'
+import { getInfo, login as loginApi } from '@/api/admin'
 import { useToken } from '@/hooks/token'
 
 // 持久化参考 https://seb-l.github.io/pinia-plugin-persist

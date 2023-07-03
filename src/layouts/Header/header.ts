@@ -1,7 +1,7 @@
 import { ref, reactive } from 'vue'
 import { useUserInfoStore } from '@/store/userInfo'
 import { useMessageBox, useNotification } from "@/hooks/message";
-import { updatePassword, logout } from "@/service/api/admin";
+import { updatePassword, logout } from "@/api/admin";
 import { useRouter } from "vue-router";
 
 export const store = useUserInfoStore()

@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia';
 
 export const useThemeConfig = defineStore('themeConfig', {
-   persist: true,
    state: (): ThemeConfigState => ({
       themeConfig: {
          // 菜单是否折叠

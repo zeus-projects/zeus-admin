@@ -6,18 +6,20 @@ import { routes, dynamicRoutes } from "./route";
 /**
  * router 实例
  */
-export const router = createRouter({
+const router = createRouter({
    // 内部提供了 history 模式的实现。为了简单起见，我们在这里使用 hash 模式。
    history: createWebHashHistory(),
    routes: routes
 })
+
+export default router
 
 /**
  * 添加动态路由
  * @param menus 菜单
  * @returns 是否更新了动态路由
  */
-export function addRoutes(menus) {
+function addRoutes(menus) {
    let hasNewRoute = false
    const findAndAddRoutes = (arr) => {
       arr.forEach(e => {
