@@ -1,25 +1,56 @@
+// 引入windi css
+import '@/plugins/windi.css'
+
+// 导入全局的svg图标
+import '@/plugins/svgIcon'
+
+// 初始化多语言
+import { setupI18n } from '@/plugins/vueI18n'
+
+// 引入状态管理
+import { setupStore } from '@/store'
+
+// 全局组件
+import { setupGlobCom } from '@/components'
+
+// 引入element-plus
+import { setupElementPlus } from '@/plugins/elementPlus'
+
+// 引入全局样式
+import '@/styles/index.less'
+
+// 引入动画
+import '@/plugins/animate.css'
+
+// 路由
+import { setupRouter } from './router'
+
+// 权限
+import { setupPermission } from './directives'
+
 import { createApp } from 'vue'
+
 import App from './App.vue'
 
-import ElementPlus from 'element-plus'
-import 'element-plus/dist/index.css'
-import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+import './permission'
 
-import 'virtual:windi.css'
-import "nprogress/nprogress.css"
+// 创建实例
+const setupAll = async () => {
+  const app = createApp(App)
 
-import router from "@/router";
-import pinia from '@/store'
+  await setupI18n(app)
 
+  setupStore(app)
 
-const app = createApp(App)
+  setupGlobCom(app)
 
-app.use(ElementPlus)
-for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
-  app.component(key, component)
+  setupElementPlus(app)
+
+  setupRouter(app)
+
+  setupPermission(app)
+
+  app.mount('#app')
 }
-app.use(router)
-app.use(pinia)
 
-app.mount('#app')
-
+setupAll()

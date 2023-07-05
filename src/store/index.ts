@@ -1,10 +1,10 @@
-// https://pinia.vuejs.org/
-import { createPinia } from 'pinia';
-import piniaPluginPersist from 'pinia-plugin-persist';
+import type { App } from 'vue'
+import { createPinia } from 'pinia'
 
-// 创建
-const pinia = createPinia();
-pinia.use(piniaPluginPersist);
+const store = createPinia()
 
-// 导出
-export default pinia;
+export const setupStore = (app: App<Element>) => {
+  app.use(store)
+}
+
+export { store }

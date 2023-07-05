@@ -1,9 +1,17 @@
+<script setup lang="ts">
+import { Error } from '@/components/Error'
+import { usePermissionStore } from '@/store/modules/permission'
+import { useRouter } from 'vue-router'
+
+const { push } = useRouter()
+
+const permissionStore = usePermissionStore()
+
+const errorClick = () => {
+  push(permissionStore.addRouters[0]?.path as string)
+}
+</script>
+
 <template>
-   <div>
-      <el-result icon="warning" title="404 NotFound" sub-title="你找的页面走丢了~">
-         <template #extra>
-            <el-button type="primary" @click="$router.push('/')">Back</el-button>
-         </template>
-      </el-result>
-   </div>
+  <Error @error-click="errorClick" />
 </template>
