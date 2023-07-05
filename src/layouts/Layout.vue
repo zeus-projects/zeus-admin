@@ -8,7 +8,7 @@
             <layout-menu/>
          </el-aside>
          <el-main>
-            <layout-tag/>
+            <layout-tabs/>
             <router-view v-slot="{ Component }">
                <transition name="fade">
                   <keep-alive :max="10">
@@ -27,7 +27,7 @@ import { useThemeConfig } from '@/store/themeConfig'
 
 const LayoutHeader = defineAsyncComponent(() => import('@/layouts/Header'));
 const LayoutMenu = defineAsyncComponent(()=> import('@/layouts/Menu'));
-const LayoutTag = defineAsyncComponent(() => import('@/layouts/Tag'));
+const LayoutTabs = defineAsyncComponent(() => import('@/layouts/Tabs'));
 </script>
 
 <style>

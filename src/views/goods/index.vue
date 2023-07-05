@@ -1,5 +1,5 @@
 <template>
-   <h1>商品列表</h1>
+   <h3>商品列表</h3>
 </template>
 
 <script setup>
