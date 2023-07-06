@@ -36,21 +36,21 @@ import './permission'
 
 // 创建实例
 const setupAll = async () => {
-  const app = createApp(App)
+   const app = createApp(App)
 
-  await setupI18n(app)
+   await setupI18n(app)
 
-  setupStore(app)
+   setupStore(app)
 
-  setupGlobCom(app)
+   setupGlobCom(app)
 
-  setupElementPlus(app)
+   setupElementPlus(app)
 
-  setupRouter(app)
+   setupRouter(app)
 
-  setupPermission(app)
+   setupPermission(app)
 
-  app.mount('#app')
+   app.mount('#app')
 }
 
 setupAll()

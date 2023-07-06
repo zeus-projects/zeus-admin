@@ -12,36 +12,36 @@ const appStore = useAppStoreWithOut()
 // 全部权限
 const all_permission = ['*.*.*']
 const hasPermission = (value: string | string[]): boolean => {
-  const permissions = wsCache.get(appStore.getUserInfo).permissions as string[]
-  if (!value) {
-    throw new Error(t('permission.hasPermission'))
-  }
-  if (!isArray(value)) {
-    return permissions?.includes(value as string)
-  }
-  if (all_permission[0] === permissions[0]) {
-    return true
-  }
-  return (intersection(value, permissions) as string[]).length > 0
+   const permissions = wsCache.get(appStore.getUserInfo).permissions as string[]
+   if (!value) {
+      throw new Error(t('permission.hasPermission'))
+   }
+   if (!isArray(value)) {
+      return permissions?.includes(value as string)
+   }
+   if (all_permission[0] === permissions[0]) {
+      return true
+   }
+   return (intersection(value, permissions) as string[]).length > 0
 }
 function hasPermi(el: Element, binding: DirectiveBinding) {
-  const value = binding.value
+   const value = binding.value
 
-  const flag = hasPermission(value)
-  if (!flag) {
-    el.parentNode?.removeChild(el)
-  }
+   const flag = hasPermission(value)
+   if (!flag) {
+      el.parentNode?.removeChild(el)
+   }
 }
 const mounted = (el: Element, binding: DirectiveBinding<any>) => {
-  hasPermi(el, binding)
+   hasPermi(el, binding)
 }
 
 const permiDirective: Directive = {
-  mounted
+   mounted
 }
 
 export const setupPermissionDirective = (app: App<Element>) => {
-  app.directive('hasPermi', permiDirective)
+   app.directive('hasPermi', permiDirective)
 }
 
 export default permiDirective

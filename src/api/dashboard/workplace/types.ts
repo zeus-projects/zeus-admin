@@ -1,30 +1,30 @@
 export type WorkplaceTotal = {
-  project: number
-  access: number
-  todo: number
+   project: number
+   access: number
+   todo: number
 }
 
 export type Project = {
-  name: string
-  icon: string
-  message: string
-  personal: string
-  time: Date | number | string
+   name: string
+   icon: string
+   message: string
+   personal: string
+   time: Date | number | string
 }
 
 export type Dynamic = {
-  keys: string[]
-  time: Date | number | string
+   keys: string[]
+   time: Date | number | string
 }
 
 export type Team = {
-  name: string
-  icon: string
+   name: string
+   icon: string
 }
 
 export type RadarData = {
-  personal: number
-  team: number
-  max: number
-  name: string
+   personal: number
+   team: number
+   max: number
+   name: string
 }

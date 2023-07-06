@@ -21,48 +21,50 @@ const collapse = computed(() => appStore.getCollapse)
 const layout = computed(() => appStore.getLayout)
 
 const handleClickOutside = () => {
-  appStore.setCollapse(true)
+   appStore.setCollapse(true)
 }
 
 const renderLayout = () => {
-  switch (unref(layout)) {
-    case 'classic':
-      const { renderClassic } = useRenderLayout()
-      return renderClassic()
-    case 'topLeft':
-      const { renderTopLeft } = useRenderLayout()
-      return renderTopLeft()
-    case 'top':
-      const { renderTop } = useRenderLayout()
-      return renderTop()
-    case 'cutMenu':
-      const { renderCutMenu } = useRenderLayout()
-      return renderCutMenu()
-    default:
-      break
-  }
+   switch (unref(layout)) {
+      case 'classic':
+         const { renderClassic } = useRenderLayout()
+         return renderClassic()
+      case 'topLeft':
+         const { renderTopLeft } = useRenderLayout()
+         return renderTopLeft()
+      case 'top':
+         const { renderTop } = useRenderLayout()
+         return renderTop()
+      case 'cutMenu':
+         const { renderCutMenu } = useRenderLayout()
+         return renderCutMenu()
+      default:
+         break
+   }
 }
 
 export default defineComponent({
-  name: 'Layout',
-  setup() {
-    return () => (
-      <section class={[prefixCls, `${prefixCls}__${layout.value}`, 'w-[100%] h-[100%] relative']}>
-        {mobile.value && !collapse.value ? (
-          <div
-            class="absolute top-0 left-0 w-full h-full opacity-30 z-99 bg-[var(--el-color-black)]"
-            onClick={handleClickOutside}
-          ></div>
-        ) : undefined}
+   name: 'Layout',
+   setup() {
+      return () => (
+         <section
+            class={[prefixCls, `${prefixCls}__${layout.value}`, 'w-[100%] h-[100%] relative']}
+         >
+            {mobile.value && !collapse.value ? (
+               <div
+                  class="absolute top-0 left-0 w-full h-full opacity-30 z-99 bg-[var(--el-color-black)]"
+                  onClick={handleClickOutside}
+               ></div>
+            ) : undefined}
 
-        {renderLayout()}
+            {renderLayout()}
 
-        <Backtop></Backtop>
+            <Backtop></Backtop>
 
-        <Setting></Setting>
-      </section>
-    )
-  }
+            <Setting></Setting>
+         </section>
+      )
+   }
 })
 </script>
 
@@ -70,9 +72,9 @@ export default defineComponent({
 @prefix-cls: ~'@{namespace}-layout';
 
 .@{prefix-cls} {
-  background-color: var(--app-content-bg-color);
-  :deep(.@{elNamespace}-scrollbar__view) {
-    height: 100% !important;
-  }
+   background-color: var(--app-content-bg-color);
+   :deep(.@{elNamespace}-scrollbar__view) {
+      height: 100% !important;
+   }
 }
 </style>

@@ -8,10 +8,10 @@ const { push } = useRouter()
 const permissionStore = usePermissionStore()
 
 const errorClick = () => {
-  push(permissionStore.addRouters[0]?.path as string)
+   push(permissionStore.addRouters[0]?.path as string)
 }
 </script>
 
 <template>
-  <Error @error-click="errorClick" />
+   <Error @error-click="errorClick" />
 </template>

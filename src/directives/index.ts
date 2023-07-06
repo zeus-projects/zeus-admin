@@ -6,5 +6,5 @@ import { setupPermissionDirective } from './permission/hasPermi'
  * @methods hasPermi 按钮权限，用法: v-hasPermi
  */
 export const setupPermission = (app: App<Element>) => {
-  setupPermissionDirective(app)
+   setupPermissionDirective(app)
 }

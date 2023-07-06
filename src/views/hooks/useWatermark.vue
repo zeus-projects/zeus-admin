@@ -15,18 +15,18 @@ const { setWatermark, clear } = useWatermark()
 const { t } = useI18n()
 
 onBeforeUnmount(() => {
-  clear()
+   clear()
 })
 </script>
 
 <template>
-  <ContentWrap title="useWatermark">
-    <ElButton type="primary" @click="setWatermark(title)">
-      {{ t('watermarkDemo.createdWatermark') }}
-    </ElButton>
-    <ElButton type="danger" @click="clear">{{ t('watermarkDemo.clearWatermark') }}</ElButton>
-    <ElButton type="warning" @click="setWatermark(`New${title}`)">
-      {{ t('watermarkDemo.resetWatermark') }}
-    </ElButton>
-  </ContentWrap>
+   <ContentWrap title="useWatermark">
+      <ElButton type="primary" @click="setWatermark(title)">
+         {{ t('watermarkDemo.createdWatermark') }}
+      </ElButton>
+      <ElButton type="danger" @click="clear">{{ t('watermarkDemo.clearWatermark') }}</ElButton>
+      <ElButton type="warning" @click="setWatermark(`New${title}`)">
+         {{ t('watermarkDemo.resetWatermark') }}
+      </ElButton>
+   </ContentWrap>
 </template>

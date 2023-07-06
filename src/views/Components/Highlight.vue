@@ -7,14 +7,14 @@ import { ElMessage } from 'element-plus'
 const { t } = useI18n()
 
 const keyClick = (key: string) => {
-  ElMessage.info(key)
+   ElMessage.info(key)
 }
 </script>
 
 <template>
-  <ContentWrap :title="t('highlightDemo.highlight')">
-    <Highlight :keys="[t('highlightDemo.keys1'), t('highlightDemo.keys2')]" @click="keyClick">
-      {{ t('highlightDemo.message') }}
-    </Highlight>
-  </ContentWrap>
+   <ContentWrap :title="t('highlightDemo.highlight')">
+      <Highlight :keys="[t('highlightDemo.keys1'), t('highlightDemo.keys2')]" @click="keyClick">
+         {{ t('highlightDemo.message') }}
+      </Highlight>
+   </ContentWrap>
 </template>
