@@ -1,8 +1,9 @@
 #!/bin/sh
-# . "$(dirname "$0")/_/husky.sh"
+. "$(dirname "$0")/_/husky.sh"
 
-# [ -n "$CI" ] && exit 0
+[ -n "$CI" ] && exit 0
 
-## Format and submit code according to lintstagedrc.js configuration
-# npm run ts:check
-# npm run lint:lint-staged
+# TypeScrpit 检查
+npm run ts:check
+# lint-staged 暂存区文件过滤，确保进入git库的代码都是符合代码规则
+npm run lint:lint-staged
