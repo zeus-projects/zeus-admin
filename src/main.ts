@@ -1,7 +1,7 @@
-// 引入windi css
+// 引入 windi css
 import '@/plugins/windi.css'
 
-// 导入全局的svg图标
+// 导入全局的 svg 图标
 import '@/plugins/svgIcon'
 
 // 初始化多语言
@@ -13,7 +13,7 @@ import { setupStore } from '@/store'
 // 全局组件
 import { setupGlobCom } from '@/components'
 
-// 引入element-plus
+// 引入 element-plus
 import { setupElementPlus } from '@/plugins/elementPlus'
 
 // 引入全局样式

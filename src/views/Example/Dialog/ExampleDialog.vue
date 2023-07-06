@@ -243,21 +243,21 @@ const save = async () => {
          <template #action="{ row }">
             <ElButton
                type="primary"
-               v-hasPermi="['example:dialog:edit']"
+               v-permission="['example:dialog:edit']"
                @click="action(row, 'edit')"
             >
                {{ t('exampleDemo.edit') }}
             </ElButton>
             <ElButton
                type="success"
-               v-hasPermi="['example:dialog:view']"
+               v-permission="['example:dialog:view']"
                @click="action(row, 'detail')"
             >
                {{ t('exampleDemo.detail') }}
             </ElButton>
             <ElButton
                type="danger"
-               v-hasPermi="['example:dialog:delete']"
+               v-permission="['example:dialog:delete']"
                @click="delData(row, false)"
             >
                {{ t('exampleDemo.del') }}

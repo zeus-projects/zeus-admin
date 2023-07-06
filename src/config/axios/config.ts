@@ -10,7 +10,7 @@ const config: {
    request_timeout: number
 } = {
    /**
-    * api请求基础路径
+    * api 请求基础路径
     */
    base_url: {
       // 开发环境接口前缀

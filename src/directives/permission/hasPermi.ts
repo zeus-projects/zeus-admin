@@ -41,7 +41,7 @@ const permiDirective: Directive = {
 }
 
 export const setupPermissionDirective = (app: App<Element>) => {
-   app.directive('hasPermi', permiDirective)
+   app.directive('permission', permiDirective)
 }
 
 export default permiDirective
