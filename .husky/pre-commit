@@ -5,5 +5,5 @@
 
 # TypeScrpit 检查
 npm run ts:check
-# lint-staged 暂存区文件过滤，确保进入git库的代码都是符合代码规则
+# lint-staged 过滤文件类型
 npm run lint:lint-staged

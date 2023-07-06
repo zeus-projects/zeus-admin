@@ -1,5 +1,5 @@
 import type { App } from 'vue'
-import { setupPermissionDirective } from './permission/hasPermi'
+import { setupPermissionDirective } from './permission/hasPermission'
 
 /**
  * 导出指令：v-xxx
