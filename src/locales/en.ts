@@ -144,7 +144,10 @@ export default {
       role: 'Role management',
       document: 'Document',
       inputPassword: 'InputPassword',
-      sticky: 'Sticky'
+      sticky: 'Sticky',
+      // custom
+      admin: 'Admin',
+      tenant: 'Tenant'
    },
    permission: {
       hasPermission: 'Please set the operation permission value'
