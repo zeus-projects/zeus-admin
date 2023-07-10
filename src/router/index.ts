@@ -92,7 +92,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       path: '/admin',
       component: Layout,
       redirect: '/admin/tenant',
-      name: 'tenant',
+      name: 'Admin',
       meta: {
          title: t('router.admin'),
          icon: 'ant-design:dashboard-filled',
@@ -100,9 +100,19 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       },
       children: [
          {
+            path: 'tenant-plan',
+            component: () => import('@/views/admin/tenant/TenantPlan.vue'),
+            name: 'TenantPlan',
+            meta: {
+               title: '租户套餐',
+               noCache: true,
+               affix: true
+            }
+         },
+         {
             path: 'tenant',
-            component: () => import('@/views/admin/Tenant.vue'),
-            name: 'tenant',
+            component: () => import('@/views/admin/tenant/Tenant.vue'),
+            name: 'Tenant',
             meta: {
                title: t('router.tenant'),
                noCache: true,
@@ -127,23 +137,23 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
          }
       ]
    },
-   {
-      path: '/guide',
-      component: Layout,
-      name: 'Guide',
-      meta: {},
-      children: [
-         {
-            path: 'index',
-            component: () => import('@/views/Guide/Guide.vue'),
-            name: 'GuideDemo',
-            meta: {
-               title: t('router.guide'),
-               icon: 'cib:telegram-plane'
-            }
-         }
-      ]
-   },
+   // {
+   //    path: '/guide',
+   //    component: Layout,
+   //    name: 'Guide',
+   //    meta: {},
+   //    children: [
+   //       {
+   //          path: 'index',
+   //          component: () => import('@/views/Guide/Guide.vue'),
+   //          name: 'GuideDemo',
+   //          meta: {
+   //             title: t('router.guide'),
+   //             icon: 'cib:telegram-plane'
+   //          }
+   //       }
+   //    ]
+   // },
    {
       path: '/components',
       component: Layout,
@@ -344,94 +354,94 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
          }
       ]
    },
-   {
-      path: '/hooks',
-      component: Layout,
-      redirect: '/hooks/useWatermark',
-      name: 'Hooks',
-      meta: {
-         title: 'hooks',
-         icon: 'ic:outline-webhook',
-         alwaysShow: true
-      },
-      children: [
-         {
-            path: 'useWatermark',
-            component: () => import('@/views/hooks/useWatermark.vue'),
-            name: 'UseWatermark',
-            meta: {
-               title: 'useWatermark'
-            }
-         },
-         {
-            path: 'useCrudSchemas',
-            component: () => import('@/views/hooks/useCrudSchemas.vue'),
-            name: 'UseCrudSchemas',
-            meta: {
-               title: 'useCrudSchemas'
-            }
-         }
-      ]
-   },
-   {
-      path: '/level',
-      component: Layout,
-      redirect: '/level/menu1/menu1-1/menu1-1-1',
-      name: 'Level',
-      meta: {
-         title: t('router.level'),
-         icon: 'carbon:skill-level-advanced'
-      },
-      children: [
-         {
-            path: 'menu1',
-            name: 'Menu1',
-            component: getParentLayout(),
-            redirect: '/level/menu1/menu1-1/menu1-1-1',
-            meta: {
-               title: t('router.menu1')
-            },
-            children: [
-               {
-                  path: 'menu1-1',
-                  name: 'Menu11',
-                  component: getParentLayout(),
-                  redirect: '/level/menu1/menu1-1/menu1-1-1',
-                  meta: {
-                     title: t('router.menu11'),
-                     alwaysShow: true
-                  },
-                  children: [
-                     {
-                        path: 'menu1-1-1',
-                        name: 'Menu111',
-                        component: () => import('@/views/Level/Menu111.vue'),
-                        meta: {
-                           title: t('router.menu111')
-                        }
-                     }
-                  ]
-               },
-               {
-                  path: 'menu1-2',
-                  name: 'Menu12',
-                  component: () => import('@/views/Level/Menu12.vue'),
-                  meta: {
-                     title: t('router.menu12')
-                  }
-               }
-            ]
-         },
-         {
-            path: 'menu2',
-            name: 'Menu2',
-            component: () => import('@/views/Level/Menu2.vue'),
-            meta: {
-               title: t('router.menu2')
-            }
-         }
-      ]
-   },
+   // {
+   //    path: '/hooks',
+   //    component: Layout,
+   //    redirect: '/hooks/useWatermark',
+   //    name: 'Hooks',
+   //    meta: {
+   //       title: 'hooks',
+   //       icon: 'ic:outline-webhook',
+   //       alwaysShow: true
+   //    },
+   //    children: [
+   //       {
+   //          path: 'useWatermark',
+   //          component: () => import('@/views/hooks/useWatermark.vue'),
+   //          name: 'UseWatermark',
+   //          meta: {
+   //             title: 'useWatermark'
+   //          }
+   //       },
+   //       {
+   //          path: 'useCrudSchemas',
+   //          component: () => import('@/views/hooks/useCrudSchemas.vue'),
+   //          name: 'UseCrudSchemas',
+   //          meta: {
+   //             title: 'useCrudSchemas'
+   //          }
+   //       }
+   //    ]
+   // },
+   // {
+   //    path: '/level',
+   //    component: Layout,
+   //    redirect: '/level/menu1/menu1-1/menu1-1-1',
+   //    name: 'Level',
+   //    meta: {
+   //       title: t('router.level'),
+   //       icon: 'carbon:skill-level-advanced'
+   //    },
+   //    children: [
+   //       {
+   //          path: 'menu1',
+   //          name: 'Menu1',
+   //          component: getParentLayout(),
+   //          redirect: '/level/menu1/menu1-1/menu1-1-1',
+   //          meta: {
+   //             title: t('router.menu1')
+   //          },
+   //          children: [
+   //             {
+   //                path: 'menu1-1',
+   //                name: 'Menu11',
+   //                component: getParentLayout(),
+   //                redirect: '/level/menu1/menu1-1/menu1-1-1',
+   //                meta: {
+   //                   title: t('router.menu11'),
+   //                   alwaysShow: true
+   //                },
+   //                children: [
+   //                   {
+   //                      path: 'menu1-1-1',
+   //                      name: 'Menu111',
+   //                      component: () => import('@/views/Level/Menu111.vue'),
+   //                      meta: {
+   //                         title: t('router.menu111')
+   //                      }
+   //                   }
+   //                ]
+   //             },
+   //             {
+   //                path: 'menu1-2',
+   //                name: 'Menu12',
+   //                component: () => import('@/views/Level/Menu12.vue'),
+   //                meta: {
+   //                   title: t('router.menu12')
+   //                }
+   //             }
+   //          ]
+   //       },
+   //       {
+   //          path: 'menu2',
+   //          name: 'Menu2',
+   //          component: () => import('@/views/Level/Menu2.vue'),
+   //          meta: {
+   //             title: t('router.menu2')
+   //          }
+   //       }
+   //    ]
+   // },
    {
       path: '/example',
       component: Layout,
@@ -499,72 +509,72 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
             }
          }
       ]
-   },
-   {
-      path: '/error',
-      component: Layout,
-      redirect: '/error/404',
-      name: 'Error',
-      meta: {
-         title: t('router.errorPage'),
-         icon: 'ci:error',
-         alwaysShow: true
-      },
-      children: [
-         {
-            path: '404-demo',
-            component: () => import('@/views/Error/404.vue'),
-            name: '404Demo',
-            meta: {
-               title: '404'
-            }
-         },
-         {
-            path: '403-demo',
-            component: () => import('@/views/Error/403.vue'),
-            name: '403Demo',
-            meta: {
-               title: '403'
-            }
-         },
-         {
-            path: '500-demo',
-            component: () => import('@/views/Error/500.vue'),
-            name: '500Demo',
-            meta: {
-               title: '500'
-            }
-         }
-      ]
    }
    // {
-   //   path: '/authorization',
-   //   component: Layout,
-   //   redirect: '/authorization/user',
-   //   name: 'Authorization',
-   //   meta: {
-   //     title: t('router.authorization'),
-   //     icon: 'eos-icons:role-binding',
-   //     alwaysShow: true
-   //   },
-   //   children: [
-   //     {
-   //       path: 'user',
-   //       component: () => import('@/views/Authorization/User.vue'),
-   //       name: 'User',
-   //       meta: {
-   //         title: t('router.user')
+   //    path: '/error',
+   //    component: Layout,
+   //    redirect: '/error/404',
+   //    name: 'Error',
+   //    meta: {
+   //       title: t('router.errorPage'),
+   //       icon: 'ci:error',
+   //       alwaysShow: true
+   //    },
+   //    children: [
+   //       {
+   //          path: '404-demo',
+   //          component: () => import('@/views/Error/404.vue'),
+   //          name: '404Demo',
+   //          meta: {
+   //             title: '404'
+   //          }
+   //       },
+   //       {
+   //          path: '403-demo',
+   //          component: () => import('@/views/Error/403.vue'),
+   //          name: '403Demo',
+   //          meta: {
+   //             title: '403'
+   //          }
+   //       },
+   //       {
+   //          path: '500-demo',
+   //          component: () => import('@/views/Error/500.vue'),
+   //          name: '500Demo',
+   //          meta: {
+   //             title: '500'
+   //          }
    //       }
-   //     },
-   //     {
-   //       path: 'role',
-   //       component: () => import('@/views/Authorization/Role.vue'),
-   //       name: 'Role',
-   //       meta: {
-   //         title: t('router.role')
+   //    ]
+   // },
+   // {
+   //    path: '/authorization',
+   //    component: Layout,
+   //    redirect: '/authorization/user',
+   //    name: 'Authorization',
+   //    meta: {
+   //       title: t('router.authorization'),
+   //       icon: 'eos-icons:role-binding',
+   //       alwaysShow: true
+   //    },
+   //    children: [
+   //       {
+   //          path: 'user',
+   //          component: () => import('@/views/Authorization/User.vue'),
+   //          name: 'User',
+   //          meta: {
+   //             title: t('router.user')
+   //          }
+   //       },
+   //       {
+   //          path: 'role',
+   //          component: () => import('@/views/Authorization/Role.vue'),
+   //          name: 'Role',
+   //          meta: {
+   //             title: t('router.role')
+   //          }
    //       }
-   //     }
-   //   ]
+   //    ]
    // }
 ]
 

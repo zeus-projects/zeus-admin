@@ -441,5 +441,18 @@ export default {
    inputPasswordDemo: {
       title: 'InputPassword',
       inputPasswordDes: 'Secondary packaging of Input components based on ElementPlus'
+   },
+   table: {
+      createBy: 'CreateBy',
+      createTime: 'createTime',
+      updateBy: 'UpdateBy',
+      updateTime: 'UpdateTime'
+   },
+   tenantPlan: {
+      title: 'TanantPlan',
+      id: 'Id',
+      name: 'Name',
+      status: 'Status',
+      menuIds: 'MenuIds'
    }
 }

@@ -437,5 +437,18 @@ export default {
    inputPasswordDemo: {
       title: '密码输入框',
       inputPasswordDes: '基于 ElementPlus 的 Input 组件二次封装'
+   },
+   table: {
+      createBy: '创建人',
+      createTime: '创建时间',
+      updateBy: '更新人',
+      updateTime: '更新时间'
+   },
+   tenantPlan: {
+      title: '租户套餐',
+      id: '序号',
+      name: '名称',
+      status: '状态',
+      menuIds: '关联的菜单编号'
    }
 }
