@@ -5,5 +5,5 @@
 
 # TypeScrpit 检查
 npm run ts:check
-# lint-staged 过滤文件类型
+# lint-staged 自动修复提交文件风格
 npm run lint:lint-staged
