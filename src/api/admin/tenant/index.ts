@@ -24,14 +24,12 @@ export const updateTenantPlanApi = (data: Partial<TenantPlan>): Promise<IRespons
 
 export const getTenantPlanApi = (id: string): Promise<IResponse<TenantPlan>> => {
    return request.get({
-      url: '/admin/tenant-plan/{id}',
-      params: { id }
+      url: `/admin/tenant-plan/${id}`
    })
 }
 
-export const delTenantPlanApi = (id: string | number): Promise<IResponse> => {
+export const deleteTenantPlanApi = (id: string | number): Promise<IResponse> => {
    return request.delete({
-      url: '/admin/tenant-plan/{id}',
-      data: { id }
+      url: `/admin/tenant-plan/${id}`
    })
 }

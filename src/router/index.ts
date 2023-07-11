@@ -95,8 +95,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       name: 'Admin',
       meta: {
          title: t('router.admin'),
-         icon: 'ant-design:dashboard-filled',
-         alwaysShow: true
+         icon: 'ant-design:dashboard-filled'
       },
       children: [
          {
@@ -105,8 +104,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
             name: 'TenantPlan',
             meta: {
                title: '租户套餐',
-               noCache: true,
-               affix: true
+               noCache: true
             }
          },
          {
@@ -115,8 +113,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
             name: 'Tenant',
             meta: {
                title: t('router.tenant'),
-               noCache: true,
-               affix: true
+               noCache: true
             }
          }
       ]

@@ -442,12 +442,19 @@ export default {
       createBy: '创建人',
       createTime: '创建时间',
       updateBy: '更新人',
-      updateTime: '更新时间'
+      updateTime: '更新时间',
+      action: '操作',
+      add: '增加',
+      edit: '编辑',
+      detail: '详情',
+      delete: '删除',
+      confirm: '确认',
+      close: '关闭'
    },
    tenantPlan: {
       title: '租户套餐',
-      id: '序号',
-      name: '名称',
+      id: '套餐编号',
+      name: '套餐名称',
       status: '状态',
       menuIds: '关联的菜单编号'
    }

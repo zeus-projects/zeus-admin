@@ -446,7 +446,14 @@ export default {
       createBy: 'CreateBy',
       createTime: 'createTime',
       updateBy: 'UpdateBy',
-      updateTime: 'UpdateTime'
+      updateTime: 'UpdateTime',
+      action: 'Action',
+      add: 'Add',
+      edit: 'Edit',
+      detail: 'Detail',
+      delete: 'Delete',
+      confirm: 'Confirm',
+      close: 'Close'
    },
    tenantPlan: {
       title: 'TanantPlan',
