@@ -132,7 +132,7 @@ export const initModel = (schema: FormSchema[], formModel: Recordable) => {
 /**
  * @param slots 插槽
  * @param field 字段名
- * @returns 返回FormIiem插槽
+ * @returns 返回FormItem插槽
  */
 export const setFormItemSlots = (slots: Slots, field: string): Recordable => {
    const slotObj: Recordable = {}

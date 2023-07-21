@@ -91,7 +91,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
    {
       path: '/admin',
       component: Layout,
-      redirect: '/admin/tenant',
+      // redirect: '/admin/dept',
       name: 'Admin',
       meta: {
          title: t('router.admin'),
@@ -99,20 +99,38 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       },
       children: [
          {
-            path: 'tenant-plan',
-            component: () => import('@/views/admin/tenant/TenantPlan.vue'),
-            name: 'TenantPlan',
+            path: 'dept',
+            component: () => import('@/views/admin/dept/Dept.vue'),
+            name: 'SysDept',
             meta: {
-               title: '租户套餐',
+               title: '部门管理',
                noCache: true
             }
          },
          {
-            path: 'tenant',
-            component: () => import('@/views/admin/tenant/Tenant.vue'),
-            name: 'Tenant',
+            path: 'menu',
+            component: () => import('@/views/admin/menu/Menu.vue'),
+            name: 'SysMenu',
             meta: {
-               title: t('router.tenant'),
+               title: '菜单管理',
+               noCache: true
+            }
+         },
+         {
+            path: 'role',
+            component: () => import('@/views/admin/role/Role.vue'),
+            name: 'SysRole',
+            meta: {
+               title: '角色管理',
+               noCache: true
+            }
+         },
+         {
+            path: 'user',
+            component: () => import('@/views/admin/user/User.vue'),
+            name: 'SysUser',
+            meta: {
+               title: '用户管理',
                noCache: true
             }
          }

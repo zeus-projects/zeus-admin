@@ -2,7 +2,7 @@
    "typescript.tsdk": "node_modules/typescript/lib",
    "autocorrect.enable": false,
    "editor.defaultFormatter": "esbenp.prettier-vscode",
-   "editor.formatOnSave": true,
+   "editor.formatOnSave": false,
    "editor.codeActionsOnSave": {
       "source.fixAll.eslint": true
    },
