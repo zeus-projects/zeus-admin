@@ -1,9 +1,0 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
-[ -n "$CI" ] && exit 0
-
-# TypeScrpit 检查
-npm run ts:check
-# lint-staged 自动修复提交文件风格
-npm run lint:lint-staged
