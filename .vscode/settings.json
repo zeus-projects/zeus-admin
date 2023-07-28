@@ -40,5 +40,8 @@
    "i18n-ally.enabledFrameworks": ["vue", "react"],
    "explorer.fileNesting.patterns": {
       "package.json": "yarn.lock, pnpm-lock.yaml, .babelrc, *.config.js, *.config.ts, *.json,*.js, plopfile.js, CNAME, LICENSE, *.md, .*ignore, .env.*"
-   }
+   },
+   "conventionalCommits.scopes": [
+      "package.json"
+   ]
 }

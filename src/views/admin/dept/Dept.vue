@@ -8,114 +8,75 @@ import {
    ElInput,
    ElButton,
    ElSelect,
-   ElOption
+   ElOption,
+   ElPopconfirm
 } from 'element-plus'
 import { statusFormatter } from '@/hooks/web/useFormatter'
 import { ref, reactive } from 'vue'
-
-interface SysDept {
-   id: number
-   name: string
-   parentId: number
-   level?: number
-   sort?: number
-   status?: number
-   createBy?: string
-   createTime?: Date
-   updateBy?: string
-   updateTime?: Date
-   children?: SysDept[]
-}
-
-const tableData: SysDept[] = [
-   {
-      id: 1,
-      name: '平台部',
-      parentId: 0,
-      level: 1,
-      sort: 1,
-      status: 0,
-      children: [
-         {
-            id: 3,
-            name: '平台开发部',
-            parentId: 1,
-            level: 2,
-            sort: 3,
-            status: 0
-         },
-         {
-            id: 4,
-            name: '平台测试部',
-            parentId: 1,
-            level: 2,
-            sort: 4,
-            status: 0
-         }
-      ]
-   },
-   {
-      id: 2,
-      name: '营销部',
-      parentId: 0,
-      level: 1,
-      sort: 2,
-      status: 0,
-      children: [
-         {
-            id: 3,
-            name: '营销部',
-            parentId: 1,
-            level: 2,
-            sort: 5,
-            status: 0
-         },
-         {
-            id: 4,
-            name: '营销部',
-            parentId: 1,
-            level: 2,
-            sort: 6,
-            status: 0
-         }
-      ]
-   }
-]
+import { statusOptions } from './dept.data'
+import * as deptApi from '@/api/admin/dept'
+import DeptForm from './DeptForm.vue'
 
 // 搜索表单
 const searchFormRef = ref()
 const searchParams = reactive({
    name: '',
-   status: ''
+   status: '',
+   size: 10,
+   current: 1
 })
-const statusOptions = [
-   {
-      label: '启用',
-      value: 0
-   },
-   {
-      label: '禁用',
-      value: 1
-   }
-]
 
 const handleSearch = () => {
    console.log('search, params:' + JSON.stringify(searchParams))
+   getTableData()
 }
 const restSearch = () => {
    console.log('restSearch')
    searchFormRef.value.resetFields()
+   getTableData()
+}
+
+// 表格
+const tableLoading = ref(true)
+const tableRef = ref()
+const tableData = ref([])
+
+const getTableData = async () => {
+   tableLoading.value = true
+   try {
+      const res = await deptApi.tree(searchParams)
+      tableData.value = res.data
+   } finally {
+      tableLoading.value = false
+   }
+}
+getTableData()
+
+// 表单
+const formRef = ref()
+
+const handleAdd = () => {
+   formRef.value.open('add')
+}
+
+const handleEdit = (row: any) => {
+   formRef.value.open('edit', row)
+   console.log(row)
+}
+
+const handleDelete = (id: number) => {
+   console.log(id)
 }
 </script>
 
 <template>
-   <ContentWrap>
+   <ContentWrap class="mb-15px">
       <el-form
          :model="searchParams"
          ref="searchFormRef"
          :inline="true"
          label-width="68px"
-         class="flex"
+         class="-mb-5px"
       >
          <el-form-item label="部门名称" prop="name">
             <el-input
@@ -135,7 +96,7 @@ const restSearch = () => {
                />
             </el-select>
          </el-form-item>
-         <el-form-item class="justify-end">
+         <el-form-item>
             <el-button @click="handleSearch" type="primary">
                <Icon icon="ep:search" class="mr-5px" /> 搜索
             </el-button>
@@ -145,18 +106,40 @@ const restSearch = () => {
          </el-form-item>
       </el-form>
    </ContentWrap>
-
-   <ContentWrap>
+   <ContentWrap class="pb-4">
+      <el-button type="primary" class="mb-4" @click="handleAdd()">
+         <Icon icon="ep:plus" class="mr-5px" />
+         新增
+      </el-button>
       <el-table
          :data="tableData"
-         style="width: 100%; margin-bottom: 20px"
+         v-loading="tableLoading"
          row-key="id"
+         ref="tableRef"
          border
          default-expand-all
       >
          <el-table-column prop="name" label="部门名称" sortable resizable />
          <el-table-column prop="status" label="状态" :formatter="statusFormatter" />
          <el-table-column prop="sort" label="排序" sortable resizable />
+         <el-table-column label="操作">
+            <template #default="scope">
+               <el-button size="default" @click="handleEdit(scope.row)">编辑</el-button>
+               <el-popconfirm
+                  confirm-button-text="确认"
+                  cancel-button-text="取消"
+                  icon-color="#626AEF"
+                  title="确定删除吗?"
+                  @confirm="handleDelete(scope.row.id)"
+               >
+                  <template #reference>
+                     <el-button size="default" type="danger">删除</el-button>
+                  </template>
+               </el-popconfirm>
+            </template>
+         </el-table-column>
       </el-table>
    </ContentWrap>
+
+   <DeptForm ref="formRef" />
 </template>
