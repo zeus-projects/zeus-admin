@@ -67,6 +67,7 @@ const dialog = reactive({
    loading: false,
    type: ''
 })
+
 const formData = ref({
    id: undefined,
    name: undefined,
@@ -79,11 +80,11 @@ interface Department {
    name: string
 }
 const deptTree = ref(Array<Department>())
+
 const props = {
    label: 'name',
    children: 'children'
 }
-
 const open = async (type: string, row: any) => {
    dialog.visible = true
    dialog.type = type
