@@ -9,7 +9,7 @@ const { getPrefixCls } = useDesign()
 const prefixCls = getPrefixCls('collapse')
 
 defineProps({
-   color: propTypes.string.def('')
+  color: propTypes.string.def('')
 })
 
 const appStore = useAppStore()
@@ -17,19 +17,18 @@ const appStore = useAppStore()
 const collapse = computed(() => appStore.getCollapse)
 
 const toggleCollapse = () => {
-   const collapsed = unref(collapse)
-   appStore.setCollapse(!collapsed)
+  const collapsed = unref(collapse)
+  appStore.setCollapse(!collapsed)
 }
 </script>
 
 <template>
-   <div :class="prefixCls">
-      <Icon
-         :size="18"
-         :icon="collapse ? 'ant-design:menu-unfold-outlined' : 'ant-design:menu-fold-outlined'"
-         :color="color"
-         class="cursor-pointer"
-         @click="toggleCollapse"
-      />
-   </div>
+  <div :class="prefixCls" @click="toggleCollapse">
+    <Icon
+      :size="18"
+      :icon="collapse ? 'ant-design:menu-unfold-outlined' : 'ant-design:menu-fold-outlined'"
+      :color="color"
+      class="cursor-pointer"
+    />
+  </div>
 </template>

@@ -4,7 +4,7 @@ import { useAppStore } from '@/store/modules/app'
 import { ConfigGlobal } from '@/components/ConfigGlobal'
 import { isDark } from '@/utils/is'
 import { useDesign } from '@/hooks/web/useDesign'
-import { useCache } from '@/hooks/web/useCache'
+import { useStorage } from '@/hooks/web/useStorage'
 
 const { getPrefixCls } = useDesign()
 
@@ -16,48 +16,48 @@ const currentSize = computed(() => appStore.getCurrentSize)
 
 const greyMode = computed(() => appStore.getGreyMode)
 
-const { wsCache } = useCache()
+const { getStorage } = useStorage()
 
 // 根据浏览器当前主题设置系统主题色
 const setDefaultTheme = () => {
-   if (wsCache.get('isDark') !== null) {
-      appStore.setIsDark(wsCache.get('isDark'))
-      return
-   }
-   const isDarkTheme = isDark()
-   appStore.setIsDark(isDarkTheme)
+  if (getStorage('isDark') !== null) {
+    appStore.setIsDark(getStorage('isDark'))
+    return
+  }
+  const isDarkTheme = isDark()
+  appStore.setIsDark(isDarkTheme)
 }
 
 setDefaultTheme()
 </script>
 
 <template>
-   <ConfigGlobal :size="currentSize">
-      <RouterView :class="greyMode ? `${prefixCls}-grey-mode` : ''" />
-   </ConfigGlobal>
+  <ConfigGlobal :size="currentSize">
+    <RouterView :class="greyMode ? `${prefixCls}-grey-mode` : ''" />
+  </ConfigGlobal>
 </template>
 
 <style lang="less">
 @prefix-cls: ~'@{namespace}-app';
 
 .size {
-   width: 100%;
-   height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 html,
 body {
-   padding: 0 !important;
-   margin: 0;
-   overflow: hidden;
-   .size;
+  padding: 0 !important;
+  margin: 0;
+  overflow: hidden;
+  .size;
 
-   #app {
-      .size;
-   }
+  #app {
+    .size;
+  }
 }
 
 .@{prefix-cls}-grey-mode {
-   filter: grayscale(100%);
+  filter: grayscale(100%);
 }
 </style>

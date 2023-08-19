@@ -1,33 +1,40 @@
-import { service } from './service'
+import service from './service'
 
-import { config } from './config'
+import config from './config'
 
-const { default_headers } = config
+const { defaultHeaders } = config
 
-const request = (option: any) => {
-   const { url, method, params, data, headersType, responseType } = option
-   return service({
-      url: url,
-      method,
-      params,
-      data,
-      responseType: responseType,
-      headers: {
-         'Content-Type': headersType || default_headers
-      }
-   })
+const request = (option: AxiosConfig) => {
+  const { url, method, params, data, headersType, responseType } = option
+  return service.request({
+    url: url,
+    method,
+    params,
+    data,
+    responseType: responseType,
+    headers: {
+      'Content-Type': headersType || defaultHeaders
+    }
+  })
 }
+
 export default {
-   get: <T = any>(option: any) => {
-      return request({ method: 'get', ...option }) as unknown as T
-   },
-   post: <T = any>(option: any) => {
-      return request({ method: 'post', ...option }) as unknown as T
-   },
-   delete: <T = any>(option: any) => {
-      return request({ method: 'delete', ...option }) as unknown as T
-   },
-   put: <T = any>(option: any) => {
-      return request({ method: 'put', ...option }) as unknown as T
-   }
+  get: <T = any>(option: AxiosConfig) => {
+    return request({ method: 'get', ...option }) as Promise<IResponse<T>>
+  },
+  post: <T = any>(option: AxiosConfig) => {
+    return request({ method: 'post', ...option }) as Promise<IResponse<T>>
+  },
+  delete: <T = any>(option: AxiosConfig) => {
+    return request({ method: 'delete', ...option }) as Promise<IResponse<T>>
+  },
+  put: <T = any>(option: AxiosConfig) => {
+    return request({ method: 'put', ...option }) as Promise<IResponse<T>>
+  },
+  cancelRequest: (url: string | string[]) => {
+    return service.cancelRequest(url)
+  },
+  cancelAllRequest: () => {
+    return service.cancelAllRequest()
+  }
 }

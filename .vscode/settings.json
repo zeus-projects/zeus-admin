@@ -1,47 +1,19 @@
 {
-   "typescript.tsdk": "node_modules/typescript/lib",
-   "autocorrect.enable": false,
-   "editor.defaultFormatter": "esbenp.prettier-vscode",
-   "editor.formatOnSave": false,
-   "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": true
-   },
-   "[javascriptreact]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
-   },
-   "[typescript]": {
-      "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
-   },
-   "[typescriptreact]": {
-      "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
-   },
-   "[html]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
-   },
-   "[css]": {
-      "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
-   },
-   "[less]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
-   },
-   "[scss]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
-   },
-   "[vue]": {
-      "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
-   },
-   "i18n-ally.localesPaths": ["src/locales"],
-   "i18n-ally.keystyle": "nested",
-   "i18n-ally.sortKeys": true,
-   "i18n-ally.namespace": false,
-   "i18n-ally.enabledParsers": ["ts"],
-   "i18n-ally.sourceLanguage": "en",
-   "i18n-ally.displayLanguage": "zh-CN",
-   "i18n-ally.enabledFrameworks": ["vue", "react"],
-   "explorer.fileNesting.patterns": {
-      "package.json": "yarn.lock, pnpm-lock.yaml, .babelrc, *.config.js, *.config.ts, *.json,*.js, plopfile.js, CNAME, LICENSE, *.md, .*ignore, .env.*"
-   },
-   "conventionalCommits.scopes": [
-      "package.json"
-   ]
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "prettier.enable": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "[vue]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+  },
+  "i18n-ally.localesPaths": ["src/locales"],
+  "i18n-ally.keystyle": "nested",
+  "i18n-ally.sortKeys": true,
+  "i18n-ally.namespace": false,
+  "i18n-ally.enabledParsers": ["ts"],
+  "i18n-ally.sourceLanguage": "en",
+  "i18n-ally.displayLanguage": "zh-CN",
+  "i18n-ally.enabledFrameworks": ["vue", "react"],
+  "god.tsconfig": "./tsconfig.json"
 }

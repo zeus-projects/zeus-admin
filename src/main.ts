@@ -1,7 +1,7 @@
-// 引入 windi css
-import '@/plugins/windi.css'
+// 引入windi css
+import '@/plugins/unocss'
 
-// 导入全局的 svg 图标
+// 导入全局的svg图标
 import '@/plugins/svgIcon'
 
 // 初始化多语言
@@ -13,7 +13,7 @@ import { setupStore } from '@/store'
 // 全局组件
 import { setupGlobCom } from '@/components'
 
-// 引入 element-plus
+// 引入element-plus
 import { setupElementPlus } from '@/plugins/elementPlus'
 
 // 引入全局样式
@@ -36,21 +36,21 @@ import './permission'
 
 // 创建实例
 const setupAll = async () => {
-   const app = createApp(App)
+  const app = createApp(App)
 
-   await setupI18n(app)
+  await setupI18n(app)
 
-   setupStore(app)
+  setupStore(app)
 
-   setupGlobCom(app)
+  setupGlobCom(app)
 
-   setupElementPlus(app)
+  setupElementPlus(app)
 
-   setupRouter(app)
+  setupRouter(app)
 
-   setupPermission(app)
+  setupPermission(app)
 
-   app.mount('#app')
+  app.mount('#app')
 }
 
 setupAll()

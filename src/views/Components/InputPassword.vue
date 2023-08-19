@@ -10,12 +10,12 @@ const password = ref('')
 </script>
 
 <template>
-   <ContentWrap
-      :title="t('inputPasswordDemo.title')"
-      :message="t('inputPasswordDemo.inputPasswordDes')"
-   >
-      <InputPassword v-model="password" class="mb-20px" />
-      <InputPassword v-model="password" strength />
-      <InputPassword v-model="password" strength disabled class="mt-20px" />
-   </ContentWrap>
+  <ContentWrap
+    :title="t('inputPasswordDemo.title')"
+    :message="t('inputPasswordDemo.inputPasswordDes')"
+  >
+    <InputPassword v-model="password" class="mb-20px" />
+    <InputPassword v-model="password" strength />
+    <InputPassword v-model="password" strength disabled class="mt-20px" />
+  </ContentWrap>
 </template>

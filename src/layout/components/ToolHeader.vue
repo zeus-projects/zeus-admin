@@ -34,52 +34,43 @@ const layout = computed(() => appStore.getLayout)
 const locale = computed(() => appStore.getLocale)
 
 export default defineComponent({
-   name: 'ToolHeader',
-   setup() {
-      return () => (
-         <div
-            id={`${variables.namespace}-tool-header`}
-            class={[
-               prefixCls,
-               'h-[var(--top-tool-height)] relative px-[var(--top-tool-p-x)] flex items-center justify-between',
-               'dark:bg-[var(--el-bg-color)]'
-            ]}
-         >
-            {layout.value !== 'top' ? (
-               <div class="h-full flex items-center">
-                  {hamburger.value && layout.value !== 'cutMenu' ? (
-                     <Collapse
-                        class="hover-trigger"
-                        color="var(--top-header-text-color)"
-                     ></Collapse>
-                  ) : undefined}
-                  {breadcrumb.value ? <Breadcrumb class="<md:hidden"></Breadcrumb> : undefined}
-               </div>
+  name: 'ToolHeader',
+  setup() {
+    return () => (
+      <div
+        id={`${variables.namespace}-tool-header`}
+        class={[
+          prefixCls,
+          'h-[var(--top-tool-height)] relative px-[var(--top-tool-p-x)] flex items-center justify-between',
+          'dark:bg-[var(--el-bg-color)]'
+        ]}
+      >
+        {layout.value !== 'top' ? (
+          <div class="h-full flex items-center">
+            {hamburger.value && layout.value !== 'cutMenu' ? (
+              <Collapse class="custom-hover" color="var(--top-header-text-color)"></Collapse>
             ) : undefined}
-            <div class="h-full flex items-center">
-               {screenfull.value ? (
-                  <Screenfull
-                     class="hover-trigger"
-                     color="var(--top-header-text-color)"
-                  ></Screenfull>
-               ) : undefined}
-               {size.value ? (
-                  <SizeDropdown
-                     class="hover-trigger"
-                     color="var(--top-header-text-color)"
-                  ></SizeDropdown>
-               ) : undefined}
-               {locale.value ? (
-                  <LocaleDropdown
-                     class="hover-trigger"
-                     color="var(--top-header-text-color)"
-                  ></LocaleDropdown>
-               ) : undefined}
-               <UserInfo class="hover-trigger"></UserInfo>
-            </div>
-         </div>
-      )
-   }
+            {breadcrumb.value ? <Breadcrumb class="<md:hidden"></Breadcrumb> : undefined}
+          </div>
+        ) : undefined}
+        <div class="h-full flex items-center">
+          {screenfull.value ? (
+            <Screenfull class="custom-hover" color="var(--top-header-text-color)"></Screenfull>
+          ) : undefined}
+          {size.value ? (
+            <SizeDropdown class="custom-hover" color="var(--top-header-text-color)"></SizeDropdown>
+          ) : undefined}
+          {locale.value ? (
+            <LocaleDropdown
+              class="custom-hover"
+              color="var(--top-header-text-color)"
+            ></LocaleDropdown>
+          ) : undefined}
+          <UserInfo></UserInfo>
+        </div>
+      </div>
+    )
+  }
 })
 </script>
 
@@ -87,6 +78,6 @@ export default defineComponent({
 @prefix-cls: ~'@{namespace}-tool-header';
 
 .@{prefix-cls} {
-   transition: left var(--transition-time-02);
+  transition: left var(--transition-time-02);
 }
 </style>

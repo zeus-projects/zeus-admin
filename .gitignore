@@ -6,4 +6,3 @@ dist-ssr
 /dist*
 *-lock.*
 pnpm-debug
-.github/*

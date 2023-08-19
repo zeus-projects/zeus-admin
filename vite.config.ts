@@ -3,7 +3,6 @@ import { loadEnv } from 'vite'
 import type { UserConfig, ConfigEnv } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import VueJsx from '@vitejs/plugin-vue-jsx'
-import WindiCSS from 'vite-plugin-windicss'
 import progress from 'vite-plugin-progress'
 import EslintPlugin from 'vite-plugin-eslint'
 import { ViteEjsPlugin } from "vite-plugin-ejs"
@@ -11,8 +10,8 @@ import { viteMockServe } from 'vite-plugin-mock'
 import PurgeIcons from 'vite-plugin-purge-icons'
 import VueI18nPlugin from "@intlify/unplugin-vue-i18n/vite"
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
-import DefineOptions from "unplugin-vue-define-options/vite"
 import { createStyleImportPlugin, ElementPlusResolve } from 'vite-plugin-style-import'
+import UnoCSS from 'unocss/vite'
 
 // https://vitejs.dev/config/
 const root = process.cwd()
@@ -34,7 +33,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
     plugins: [
       Vue(),
       VueJsx(),
-      WindiCSS(),
+      // WindiCSS(),
       progress(),
       createStyleImportPlugin({
         resolves: [ElementPlusResolve()],
@@ -42,7 +41,10 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
           libraryName: 'element-plus',
           esModule: true,
           resolveStyle: (name) => {
-            return `element-plus/es/components/${name.substring(3)}/style/css`
+            if (name === 'click-outside') {
+              return ''
+            }
+            return `element-plus/es/components/${name.replace(/^el-/, '')}/style/css`
           }
         }]
       }),
@@ -72,10 +74,11 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
           setupProdMockServer()
           `
       }),
-      DefineOptions(),
       ViteEjsPlugin({
         title: env.VITE_APP_TITLE
-      })
+      }),
+      UnoCSS(),
+      // sveltekit(),
     ],
 
     css: {
@@ -112,7 +115,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       }
     },
     server: {
-      port: 8080,
+      port: 4000,
       proxy: {
         // 选项写法
         '/api': {
