@@ -14,7 +14,8 @@ const hasPermission = (value: string): boolean => {
   }
   return false
 }
-function hasPermi(el: Element, binding: DirectiveBinding) {
+
+const mounted = (el: Element, binding: DirectiveBinding<any>) => {
   const value = binding.value
 
   const flag = hasPermission(value)
@@ -22,16 +23,13 @@ function hasPermi(el: Element, binding: DirectiveBinding) {
     el.parentNode?.removeChild(el)
   }
 }
-const mounted = (el: Element, binding: DirectiveBinding<any>) => {
-  hasPermi(el, binding)
-}
 
 const permiDirective: Directive = {
   mounted
 }
 
 export const setupPermissionDirective = (app: App<Element>) => {
-  app.directive('hasPermi', permiDirective)
+  app.directive('permission', permiDirective)
 }
 
 export default permiDirective

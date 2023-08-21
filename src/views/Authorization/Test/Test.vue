@@ -2,11 +2,13 @@
 import { ContentWrap } from '@/components/ContentWrap'
 import { ref, unref } from 'vue'
 import { ElButton, ElDivider, ElRow, ElCol } from 'element-plus'
-import { hasPermi } from '@/components/Permission'
+import { hasPermission } from '@/components/Permission'
+import router from '@/router'
 
 const permission = ref('add')
 
 setTimeout(() => {
+  console.log(router.currentRoute.value.meta.permission)
   permission.value = 'view'
 }, 3000)
 </script>
@@ -39,15 +41,15 @@ setTimeout(() => {
     <ElRow :gutter="20">
       <ElCol :span="8">
         新增权限：
-        <ElButton v-hasPermi="'add'" type="primary"> Add </ElButton>
+        <ElButton v-permission="'add'" type="primary"> Add </ElButton>
       </ElCol>
       <ElCol :span="8">
         删除权限：
-        <ElButton v-hasPermi="'delete'" type="danger"> Delete </ElButton>
+        <ElButton v-permission="'delete'" type="danger"> Delete </ElButton>
       </ElCol>
       <ElCol :span="8">
         3秒后切换查看权限（无法动态修改）：
-        <ElButton v-hasPermi="permission" type="primary"> View </ElButton>
+        <ElButton v-permission="permission" type="primary"> View </ElButton>
       </ElCol>
     </ElRow>
 
@@ -55,15 +57,15 @@ setTimeout(() => {
     <ElRow :gutter="20">
       <ElCol :span="8">
         新增权限：
-        <ElButton v-if="hasPermi('add')" type="primary"> Add </ElButton>
+        <ElButton v-if="hasPermission('add')" type="primary"> Add </ElButton>
       </ElCol>
       <ElCol :span="8">
         删除权限：
-        <ElButton v-if="hasPermi('delete')" type="danger"> Delete </ElButton>
+        <ElButton v-if="hasPermission('delete')" type="danger"> Delete </ElButton>
       </ElCol>
       <ElCol :span="8">
         3秒后切换查看权限：
-        <ElButton v-if="hasPermi(unref(permission))" type="primary"> View </ElButton>
+        <ElButton v-if="hasPermission(unref(permission))" type="primary"> View </ElButton>
       </ElCol>
     </ElRow>
   </ContentWrap>

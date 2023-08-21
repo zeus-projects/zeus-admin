@@ -1,7 +1,7 @@
 import { useI18n } from '@/hooks/web/useI18n'
 import router from '@/router'
 
-export const hasPermi = (value: string) => {
+export const hasPermission = (value: string): boolean => {
   const { t } = useI18n()
   const permission = (router.currentRoute.value.meta.permission || []) as string[]
   if (!value) {
