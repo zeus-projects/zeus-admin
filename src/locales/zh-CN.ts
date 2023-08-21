@@ -160,7 +160,7 @@ export default {
     authorization: '权限管理',
     user: '用户管理',
     role: '角色管理',
-    document: '文档',
+    document: '项目文档',
     inputPassword: '密码输入框',
     sticky: '黏性',
     treeTable: '树形表格',
@@ -213,7 +213,7 @@ export default {
   },
   workplace: {
     goodMorning: '早安',
-    happyDay: '祝你开心每一天!',
+    happyDay: '祝你开心每一天！',
     toady: '今日晴',
     project: '项目数',
     access: '项目访问',
@@ -231,7 +231,7 @@ export default {
     yield: '产量',
     dynamic: '动态',
     push: '推送',
-    pushCode: 'Archer 推送 代码到 Github',
+    pushCode: 'Admin 推送 代码到 Github',
     follow: '关注'
   },
   formDemo: {
@@ -322,10 +322,10 @@ export default {
   iconDemo: {
     icon: '图标',
     localIcon: '本地图标',
-    iconify: 'Iconify组件',
+    iconify: 'Iconify 组件',
     recommendedUse: '推荐使用',
     recommendeDes:
-      'Iconify组件基本包含所有的图标，你可以查询到你想要的任何图标。并且打包只会打包所用到的图标。',
+      'Iconify 组件基本包含所有的图标，你可以查询到你想要的任何图标。并且打包只会打包所用到的图标。',
     accessAddress: '访问地址'
   },
   echartDemo: {
@@ -356,13 +356,13 @@ export default {
     qrcode: '二维码',
     qrcodeDes: '基于 qrcode 二次封装',
     basicUsage: '基础用法',
-    imgTag: 'img标签',
+    imgTag: 'img 标签',
     style: '样式配置',
     click: '点击事件',
     asynchronousContent: '异步内容',
     invalid: '失效',
-    logoConfig: 'logo配置',
-    logoStyle: 'logo样式',
+    logoConfig: 'logo 配置',
+    logoStyle: 'logo 样式',
     size: '大小配置'
   },
   highlightDemo: {
