@@ -170,7 +170,9 @@ export default {
     permission: '权限测试页',
     function: '功能',
     multipleTabs: '多开标签页',
-    details: '详情页'
+    details: '详情页',
+    admin: '系统管理',
+    dept: '部门管理'
   },
   permission: {
     hasPermission: '请设置操作权限值'
@@ -296,12 +298,9 @@ export default {
     subitem: '子项',
     formValidation: '表单验证',
     verifyReset: '验证重置',
-    // 富文本编辑器
     richText: '富文本编辑器',
     form: '表单',
-    // 远程加载
     remoteLoading: '远程加载',
-    // 聚焦
     focus: '聚焦',
     treeSelect: '树形选择器',
     showCheckbox: '显示复选框',
@@ -533,5 +532,52 @@ export default {
   inputPasswordDemo: {
     title: '密码输入框',
     inputPasswordDes: '基于 ElementPlus 的 Input 组件二次封装'
+  },
+  dialog: {
+    open: '打开',
+    close: '关闭'
+  },
+  message: {
+    success: '成功',
+    failed: '失败',
+    delSuccess: '删除成功',
+    delFailed: '删除失败',
+    uploadSuccess: '上传成功',
+    uploadFailed: '上传失败'
+  },
+  table: {
+    action: {
+      add: '新增',
+      edit: '编辑',
+      view: '查看',
+      delete: '删除',
+      query: '查询',
+      reset: '重置'
+    },
+    column: {
+      selection: '多选',
+      action: '操作',
+      createBy: '创建人',
+      createTime: '创建时间',
+      updateBy: '更新人',
+      updateTime: '更新时间'
+    }
+  },
+  form: {
+    submit: '提交',
+    confirm: '确认',
+    cancel: '取消'
+  },
+  admin: {
+    dept: {
+      id: '部门id',
+      name: '部门名称',
+      parentId: '上级部门',
+      status: '状态',
+      sort: '排序',
+      parentIdTip: '请选择上级部门',
+      nameTip: '请输入部门名称',
+      sortTip: '请输入部门排序权重'
+    }
   }
 }

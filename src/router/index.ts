@@ -89,6 +89,27 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
     ]
   },
   {
+    path: '/admin',
+    component: Layout,
+    redirect: '/admin/dept',
+    name: 'Admin',
+    meta: {
+      title: t('router.admin'),
+      icon: 'eos-icons:role-binding',
+      alwaysShow: true
+    },
+    children: [
+      {
+        path: 'dept',
+        component: () => import('@/views/Admin/Dept/Dept.vue'),
+        name: 'Dept',
+        meta: {
+          title: t('router.dept')
+        }
+      }
+    ]
+  },
+  {
     path: '/authorization',
     component: Layout,
     redirect: '/authorization/user',

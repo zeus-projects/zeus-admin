@@ -171,7 +171,9 @@ export default {
     permission: 'Permission test page',
     function: 'Function',
     multipleTabs: 'Multiple tabs',
-    details: 'Details'
+    details: 'Details',
+    admin: 'System management',
+    dept: 'Department'
   },
   permission: {
     hasPermission: 'Please set the operation permission value'
@@ -541,5 +543,53 @@ export default {
   inputPasswordDemo: {
     title: 'InputPassword',
     inputPasswordDes: 'Secondary packaging of Input components based on ElementPlus'
+  },
+  dialog: {
+    open: 'Open',
+    close: 'Close'
+  },
+  message: {
+    success: 'Success',
+    failed: 'Failed',
+    delSuccess: 'Successfully deleted',
+    delFailed: 'Delete failed',
+    uploadSuccess: 'Upload successful',
+    uploadFailed: 'Upload failed'
+  },
+  table: {
+    action: {
+      add: 'Add',
+      edit: 'Edit',
+      view: 'View',
+      delete: 'Delete',
+      action: 'Action',
+      query: 'Query',
+      reset: 'Reset'
+    },
+    column: {
+      selection: 'Selection',
+      action: 'Action',
+      createBy: 'CreateBy',
+      createTime: 'CreateTime',
+      updateBy: 'UpdateBy',
+      updateTime: 'UpdateTime'
+    }
+  },
+  form: {
+    submit: 'Submit',
+    confirm: 'Confirm',
+    cancel: 'Cancel'
+  },
+  admin: {
+    dept: {
+      id: 'DeptId',
+      name: 'DeptName',
+      parentId: 'ParentDeptId',
+      status: 'Enable Status',
+      sort: 'Sort',
+      parentIdTip: 'Please select a superior department',
+      nameTip: 'Please enter the department name',
+      sortTip: 'Please enter the department sorting weight'
+    }
   }
 }

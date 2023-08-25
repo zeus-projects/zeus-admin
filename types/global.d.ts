@@ -64,4 +64,17 @@ declare global {
     topHeaderHoverColor?: string
     topToolBorderColor?: string
   }
+
+  declare interface R<T = any> {
+    code: string
+    data: T extends any ? T : T & any
+    msg: string
+  }
+
+  declare interface Page<T = any> {
+    size: number
+    current: number
+    total: number
+    records: []
+  }
 }
