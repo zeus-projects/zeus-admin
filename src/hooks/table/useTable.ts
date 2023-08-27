@@ -43,7 +43,7 @@ export interface TableOption {
  * 产物：7.初始化参数的变量searchInitParam
  */
 export const useTable = (config: TableOption) => {
-  const { defaultParam = {}, lazy = false, isPage = true } = config
+  const { fetchDataApi, dataCallBack, defaultParam = {}, lazy = false, isPage = true } = config
   const state = reactive<TableStateProps>({
     loading: false,
     tableData: [],
@@ -63,6 +63,10 @@ export const useTable = (config: TableOption) => {
     if (!lazy) {
       reset()
     }
+  })
+
+  watch([state.searchParam, state.pagination], () => {
+    mergeParam()
   })
 
   /**
@@ -89,18 +93,15 @@ export const useTable = (config: TableOption) => {
     state.loading = true
     console.group('fetchData')
     try {
-      // 合并请求参数
-      await mergeParam()
       console.log('fetchDataApi param', state.totalParam)
 
       // 请求数据
-      let res = await config?.fetchDataApi(state.totalParam)
+      let res = await fetchDataApi(state.totalParam)
       console.log('fetchDataApi res', res)
 
       // 数据回调函数
-      if (config?.dataCallBack) {
-        config.dataCallBack
-        res = config.dataCallBack(res)
+      if (dataCallBack) {
+        res = await dataCallBack(res)
         console.log('dataCallBack res', res)
       }
       if (isPage) {
