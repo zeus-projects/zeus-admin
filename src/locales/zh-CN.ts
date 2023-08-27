@@ -123,11 +123,6 @@ export default {
     login: '登录',
     level: '多级菜单',
     menu: '菜单',
-    menu1: '菜单1',
-    menu11: '菜单1-1',
-    menu111: '菜单1-1-1',
-    menu12: '菜单1-2',
-    menu2: '菜单2',
     dashboard: '首页',
     analysis: '分析页',
     workplace: '工作台',
@@ -540,10 +535,20 @@ export default {
   message: {
     success: '成功',
     failed: '失败',
+    addSuccess: '新增成功',
+    addFailed: '新增失败',
+    editSuccess: '编辑成功',
+    editfailed: '编辑失败',
     delSuccess: '删除成功',
     delFailed: '删除失败',
     uploadSuccess: '上传成功',
-    uploadFailed: '上传失败'
+    uploadFailed: '上传失败',
+    downloadSuccess: '下载成功',
+    downloadFailed: '下载失败'
+  },
+  status: {
+    enable: '启用',
+    disable: '禁用'
   },
   table: {
     action: {
@@ -551,7 +556,9 @@ export default {
       edit: '编辑',
       view: '查看',
       delete: '删除',
+      confirmDel: '确认删除？',
       query: '查询',
+      search: '搜索',
       reset: '重置'
     },
     column: {
@@ -573,11 +580,22 @@ export default {
       id: '部门id',
       name: '部门名称',
       parentId: '上级部门',
-      status: '状态',
-      sort: '排序',
+      status: '部门状态',
+      sortOrder: '排序',
       parentIdTip: '请选择上级部门',
       nameTip: '请输入部门名称',
-      sortTip: '请输入部门排序权重'
+      sortTip: '请输入部门排序权重',
+      rootdept: '根部门'
+    },
+    menu: {
+      id: '菜单id',
+      name: '菜单名称',
+      parentId: '上级菜单',
+      sortOrder: '排序',
+      icon: '图标',
+      path: '路由',
+      type: '类型',
+      permission: '权限标识'
     }
   }
 }

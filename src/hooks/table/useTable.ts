@@ -81,7 +81,7 @@ export const useTable = (config: TableOption) => {
       Object.assign(state.totalParam, defaultParam, state.searchParam)
     }
     // 过滤空字符串的参数，不加入到请求参数中
-    const filteredEntries = Object.entries(state.totalParam).filter(([key, value]) => value !== '')
+    const filteredEntries = Object.entries(state.totalParam).filter(([_key, value]) => value !== '')
     state.totalParam = Object.fromEntries(filteredEntries)
   }
 

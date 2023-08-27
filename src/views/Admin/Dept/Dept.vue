@@ -1,27 +1,37 @@
 <template>
   <ContentWrap>
     <el-row shadow="hover" v-show="showSearch">
-      <el-form :model="state.queryForm" ref="queryRef" :inline="true" @keyup.enter="getDataList">
-        <el-form-item prop="deptName" :label="$t('admin.dept.name')">
+      <el-form :model="searchParam" :inline="true" @keyup.enter="search">
+        <el-form-item prop="name" :label="$t('admin.dept.name')">
           <el-input
+            v-model="searchParam.name"
             :placeholder="$t('admin.dept.name')"
             style="max-width: 180px"
-            v-model="state.queryForm.deptName"
+            clearable
           />
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" :icon="queryButton" @click="getDataList" />
+          <el-button type="primary" :icon="useIcon({ icon: 'ep:search' })" @click="search">
+            {{ $t('table.action.search') }}
+          </el-button>
+          <el-button type="primary" :icon="useIcon({ icon: 'ep:refresh' })" @click="reset">
+            {{ $t('table.action.reset') }}
+          </el-button>
         </el-form-item>
       </el-form>
     </el-row>
     <el-row class="mb-2">
-      <el-button type="primary" :icon="addButton" @click="formRef.open('add')">
-        {{ $t('table.add') }}
+      <el-button
+        type="primary"
+        :icon="useIcon({ icon: 'ep:folder-add' })"
+        @click="formRef.open('add')"
+      >
+        {{ $t('table.action.add') }}
       </el-button>
     </el-row>
     <el-table
-      :data="state.dataList"
-      v-loading="state.loading"
+      :data="tableData"
+      v-loading="loading"
       style="width: 100%"
       row-key="id"
       default-expand-all
@@ -31,36 +41,41 @@
       <el-table-column :label="$t('admin.dept.name')" prop="name" />
       <el-table-column :label="$t('admin.dept.status')" prop="status">
         <template #default="scope">
-          <el-tag v-if="scope.row.status === 0" type="success">启用</el-tag>
-          <el-tag v-else type="danger">禁用</el-tag>
+          <el-tag v-if="scope.row.status === 0" type="success"> {{ t('status.enable') }} </el-tag>
+          <el-tag v-else type="danger"> {{ t('status.disable') }} </el-tag>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('admin.dept.sort')" prop="sort" />
-      <el-table-column :label="$t('table.action')" show-overflow-tooltip>
-        <template #default="scope">
+      <el-table-column :label="$t('admin.dept.sortOrder')" prop="sortOrder" />
+      <el-table-column :label="$t('table.column.action')" show-overflow-tooltip>
+        <template #default="{ row }">
           <el-button
             text
             type="primary"
-            :icon="addButton"
-            @click="formRef.open('add', scope.row?.id)"
+            :icon="useIcon({ icon: 'ep:folder-add' })"
+            @click="formRef.open('add', row)"
           >
             {{ $t('table.action.add') }}
           </el-button>
           <el-button
             text
             type="primary"
-            :icon="editButton"
-            @click="formRef.open('edit', scope.row?.id)"
+            :icon="useIcon({ icon: 'ep:edit-pen' })"
+            @click="formRef.open('edit', row)"
           >
             {{ $t('table.action.edit') }}
           </el-button>
-          <el-button text type="primary" :icon="deleteButton" @click="handleDelete(scope.row)">
+          <el-button
+            text
+            type="primary"
+            :icon="useIcon({ icon: 'ep:delete' })"
+            @click="handleDelete(row)"
+          >
             {{ $t('table.action.delete') }}
           </el-button>
         </template>
       </el-table-column>
     </el-table>
-    <DeptForm ref="formRef" />
+    <DeptForm ref="formRef" @refresh="search" />
   </ContentWrap>
 </template>
 
@@ -76,46 +91,34 @@ import {
   ElTableColumn,
   ElTag
 } from 'element-plus'
-import { ref, reactive } from 'vue'
-import { getDeptTree, removeById } from '@/api/admin/dept'
-import { useTable, TableProp } from '@/hooks/table/useTable'
-import { useIcon } from '@/hooks/web/useIcon'
+import { ref } from 'vue'
+import { getDeptTreeApi, removeDeptByIdApi } from '@/api/admin/dept'
+import { useTable } from '@/hooks/table/useTable'
 import { useMessage, useMessageBox } from '@/hooks/web/useMessage'
+import { useIcon } from '@/hooks/web/useIcon'
 import { useI18n } from '@/hooks/web/useI18n'
 
 const { t } = useI18n()
-const DeptForm = defineAsyncComponent(() => import('./form.vue'))
+const DeptForm = defineAsyncComponent(() => import('./DeptForm.vue'))
 
-const state: TableProp = reactive<TableProp>({
-  dataList: [],
-  queryForm: {
-    deptName: ''
-  },
-  pagination: {
-    enable: false
-  },
-  getDataApi: getDeptTree,
-  loading: false
-})
-const { getDataList } = useTable(state)
 const formRef = ref()
 const showSearch = ref(true)
 
-const queryButton = useIcon({ icon: 'ep:search' })
-const addButton = useIcon({ icon: 'ep:folder-add' })
-const editButton = useIcon({ icon: 'ep:edit-pen' })
-const deleteButton = useIcon({ icon: 'ep:delete' })
+const { searchParam, loading, tableData, fetchData, search, reset } = useTable({
+  fetchDataApi: getDeptTreeApi,
+  isPage: false
+})
 
 // 删除当前行
 const handleDelete = async (row: any) => {
   try {
-    await useMessageBox().confirm(t('form.confirm'))
+    await useMessageBox().confirm(t('table.action.confirmDel'))
   } catch {
     return
   }
   try {
-    await removeById(row.id)
-    getDataList()
+    await removeDeptByIdApi(row.id)
+    fetchData()
     useMessage().success(t('message.delSuccess'))
   } catch (err: any) {
     useMessage().error(err.msg)

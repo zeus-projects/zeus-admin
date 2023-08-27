@@ -123,11 +123,6 @@ export default {
     login: 'Login',
     level: 'Multi level menu',
     menu: 'Menu',
-    menu1: 'Menu1',
-    menu11: 'Menu1-1',
-    menu111: 'Menu1-1-1',
-    menu12: 'Menu1-2',
-    menu2: 'Menu2',
     dashboard: 'Dashboard',
     analysis: 'Analysis',
     workplace: 'Workplace',
@@ -551,10 +546,20 @@ export default {
   message: {
     success: 'Success',
     failed: 'Failed',
+    addSuccess: 'Successfully added',
+    addFailed: 'Add failed',
+    editSuccess: 'Successfully edited',
+    editfailed: 'Editing failed',
     delSuccess: 'Successfully deleted',
     delFailed: 'Delete failed',
     uploadSuccess: 'Upload successful',
-    uploadFailed: 'Upload failed'
+    uploadFailed: 'Upload failed',
+    downloadSuccess: 'Download successful',
+    downloadFailed: 'Download failed'
+  },
+  status: {
+    enable: 'Enable',
+    disable: 'Disable'
   },
   table: {
     action: {
@@ -562,8 +567,9 @@ export default {
       edit: 'Edit',
       view: 'View',
       delete: 'Delete',
-      action: 'Action',
+      confirmDel: 'Confirm delete?',
       query: 'Query',
+      search: 'Search',
       reset: 'Reset'
     },
     column: {
@@ -583,13 +589,24 @@ export default {
   admin: {
     dept: {
       id: 'DeptId',
-      name: 'DeptName',
-      parentId: 'ParentDeptId',
-      status: 'Enable Status',
-      sort: 'Sort',
+      name: 'Name',
+      parentId: 'ParentId',
+      status: 'Status',
+      sortOrder: 'sortOrder',
       parentIdTip: 'Please select a superior department',
       nameTip: 'Please enter the department name',
-      sortTip: 'Please enter the department sorting weight'
+      sortTip: 'Please enter the department sorting weight',
+      rootdept: 'RootDepartment'
+    },
+    menu: {
+      id: 'Menu ID',
+      name: 'Menu Name',
+      parentId: 'Parent Menu',
+      sortOrder: 'Sort Order',
+      icon: 'Icon',
+      path: 'Path',
+      type: 'Menu Type',
+      permission: 'Permissions'
     }
   }
 }
