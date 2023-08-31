@@ -124,7 +124,7 @@ const { t } = useI18n()
               />
               <div>
                 <div class="text-20px">
-                  {{ t('workplace.goodMorning') }}，Archer，{{ t('workplace.happyDay') }}
+                  {{ t('workplace.goodMorning') }}，Alex，{{ t('workplace.happyDay') }}
                 </div>
                 <div class="mt-10px text-14px text-gray-500">
                   {{ t('workplace.toady') }}，20℃ - 32℃！

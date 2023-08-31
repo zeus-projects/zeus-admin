@@ -95,7 +95,7 @@ function handleShowForm(show = false) {
         <div :class="`${prefixCls}-entry-content`">
           <div class="flex flex-col items-center">
             <img src="@/assets/imgs/avatar.jpg" alt="" class="w-70px h-70px rounded-[50%]" />
-            <span class="text-14px my-10px text-[var(--logo-title-text-color)]">Archer</span>
+            <span class="text-14px my-10px text-[var(--logo-title-text-color)]">Alex</span>
           </div>
           <ElInput
             type="password"
@@ -205,6 +205,7 @@ function handleShowForm(show = false) {
         font-size: 90px;
       }
     }
+
     @media screen and (min-width: @screen-lg) {
       span:not(.meridiem) {
         font-size: 220px;
@@ -216,6 +217,7 @@ function handleShowForm(show = false) {
         font-size: 260px;
       }
     }
+
     @media screen and (min-width: @screen-2xl) {
       span:not(.meridiem) {
         font-size: 320px;
