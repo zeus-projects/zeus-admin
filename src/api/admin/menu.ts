@@ -6,11 +6,11 @@ export type SysMenu = {
   parentId: number
   level?: number
   sortOrder?: number
-  status?: number
+  hidden?: number
   icon?: string
   path?: string
   type: string
-  permission?: string[]
+  permission?: string
   createBy?: string
   createTime?: Date
   updateBy?: string

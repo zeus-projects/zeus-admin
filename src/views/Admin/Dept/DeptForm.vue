@@ -1,14 +1,14 @@
 <template>
   <Dialog
     v-model="visible"
-    :title="type === 'edit' ? $t('table.action.edit') : $t('table.action.add')"
+    :title="type === 'edit' ? $t('action.edit') : $t('action.add')"
     width="600px"
   >
     <el-form
       ref="formRef"
       :model="form"
       v-loading="loading"
-      :rules="dataRules"
+      :rules="rules"
       label-width="100px"
       label-suffix=":"
       shadow="hover"
@@ -20,11 +20,11 @@
               v-model="form.parentId"
               :data="parentData"
               :props="{ value: 'id', label: 'name', children: 'children' }"
-              clearable
+              :placeholder="$t('admin.dept.parentIdTip')"
+              :render-after-expand="false"
               style="width: 400px"
               check-strictly
-              :render-after-expand="false"
-              :placeholder="$t('admin.dept.parentIdTip')"
+              clearable
             />
           </el-form-item>
         </el-col>
@@ -57,7 +57,7 @@
               :inactive-value="1"
               style="
 
---el-switch-on-color: #13ce66; --el-switch-off-color: #ff4949"
+--el-switch-on-color: #13ce66"
             />
           </el-form-item>
         </el-col>
@@ -65,10 +65,10 @@
     </el-form>
     <template #footer>
       <span class="dialog-footer">
-        <el-button type="primary" @click="onSubmit" :disabled="loading">
-          {{ $t('form.confirm') }}
+        <el-button type="primary" @click="onSubmit()" :disabled="loading">
+          {{ $t('action.confirm') }}
         </el-button>
-        <el-button @click="visible = false">{{ $t('form.cancel') }}</el-button>
+        <el-button @click="close()">{{ $t('action.cancel') }}</el-button>
       </span>
     </template>
   </Dialog>
@@ -88,15 +88,9 @@ import {
 import { Dialog } from '@/components/Dialog'
 import { useI18n } from 'vue-i18n'
 import { useMessage } from '@/hooks/web/useMessage'
-import {
-  SysDept,
-  getDeptTreeApi,
-  saveDeptApi,
-  getDeptByIdApi,
-  updateDeptByIdApi
-} from '@/api/admin/dept'
+import { SysDept, getDeptTreeApi, saveDeptApi, updateDeptByIdApi } from '@/api/admin/dept'
 
-const formRef = ref()
+const formRef = ref<ComponentRef<typeof ElForm>>()
 const form: SysDept = reactive<SysDept>({
   id: -1,
   name: '',
@@ -109,8 +103,7 @@ const parentData = ref<any[]>([])
 const visible = ref(false)
 const loading = ref(false)
 const type = ref('')
-
-const dataRules = ref({
+const rules = ref({
   parentId: [{ required: true, message: '上级部门不能为空', trigger: 'blur' }],
   name: [{ required: true, message: '部门名称不能为空', trigger: 'blur' }],
   sortOrder: [{ required: true, message: '排序不能为空', trigger: 'blur' }]
@@ -119,32 +112,37 @@ const dataRules = ref({
 const emit = defineEmits(['refresh'])
 const { t } = useI18n()
 
-const open = async (dialogType: string, row: any) => {
+onMounted(() => {
+  loadFormDict()
+})
+
+const open = (dialogType: string, row: any) => {
   visible.value = true
   loading.value = true
-  await nextTick(() => {
-    formRef.value?.resetFields()
+  unref(formRef)?.resetFields()
+  // 在 nextTick 里面，防止 resetFields() 后初始值为第一次赋值后的内容，而非默认值
+  nextTick(() => {
+    type.value = dialogType
+    if (dialogType === 'edit') {
+      Object.assign(form, row)
+    } else if (row) {
+      form.parentId = row.id
+    }
   })
-  type.value = dialogType
-  if (dialogType === 'edit') {
-    await getDeptByIdApi(row?.id)
-      .then((res) => {
-        Object.assign(form, res.data)
-      })
-      .catch((err) => {
-        useMessage().error(err.msg)
-      })
-  } else if (row) {
-    form.parentId = row.id
-  }
-  await loadFormDict()
   loading.value = false
+}
+
+const close = (clearForm: boolean = true) => {
+  visible.value = false
+  if (clearForm) {
+    unref(formRef)?.resetFields()
+  }
 }
 
 // 提交
 const onSubmit = async () => {
   console.log('[onSubmit] validate')
-  const valid = await formRef.value.validate().catch(() => {})
+  const valid = await formRef.value?.validate().catch(() => {})
   if (!valid) {
     return false
   }
@@ -184,7 +182,8 @@ const loadFormDict = async () => {
 
 // 暴露变量
 defineExpose({
-  open
+  open,
+  close
 })
 </script>
 

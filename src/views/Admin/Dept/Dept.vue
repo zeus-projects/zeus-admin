@@ -5,17 +5,17 @@
         <el-form-item prop="name" :label="$t('admin.dept.name')">
           <el-input
             v-model="searchParam.name"
-            :placeholder="$t('admin.dept.name')"
+            :placeholder="$t('admin.dept.nameTip')"
             style="max-width: 180px"
             clearable
           />
         </el-form-item>
         <el-form-item>
           <el-button type="primary" :icon="useIcon({ icon: 'ep:search' })" @click="search">
-            {{ $t('table.action.search') }}
+            {{ $t('action.search') }}
           </el-button>
-          <el-button type="primary" :icon="useIcon({ icon: 'ep:refresh' })" @click="reset">
-            {{ $t('table.action.reset') }}
+          <el-button :icon="useIcon({ icon: 'ep:refresh' })" @click="reset">
+            {{ $t('action.reset') }}
           </el-button>
         </el-form-item>
       </el-form>
@@ -26,7 +26,7 @@
         :icon="useIcon({ icon: 'ep:folder-add' })"
         @click="formRef.open('add')"
       >
-        {{ $t('table.action.add') }}
+        {{ $t('action.add') }}
       </el-button>
     </el-row>
     <el-table
@@ -46,7 +46,7 @@
         </template>
       </el-table-column>
       <el-table-column :label="$t('admin.dept.sortOrder')" prop="sortOrder" />
-      <el-table-column :label="$t('table.column.action')" show-overflow-tooltip>
+      <el-table-column :label="$t('table.action')" show-overflow-tooltip>
         <template #default="{ row }">
           <el-button
             text
@@ -54,7 +54,7 @@
             :icon="useIcon({ icon: 'ep:folder-add' })"
             @click="formRef.open('add', row)"
           >
-            {{ $t('table.action.add') }}
+            {{ $t('action.add') }}
           </el-button>
           <el-button
             text
@@ -62,7 +62,7 @@
             :icon="useIcon({ icon: 'ep:edit-pen' })"
             @click="formRef.open('edit', row)"
           >
-            {{ $t('table.action.edit') }}
+            {{ $t('action.edit') }}
           </el-button>
           <el-button
             text
@@ -70,7 +70,7 @@
             :icon="useIcon({ icon: 'ep:delete' })"
             @click="handleDelete(row)"
           >
-            {{ $t('table.action.delete') }}
+            {{ $t('action.delete') }}
           </el-button>
         </template>
       </el-table-column>
@@ -101,15 +101,15 @@ import { useI18n } from '@/hooks/web/useI18n'
 const { t } = useI18n()
 const DeptForm = defineAsyncComponent(() => import('./DeptForm.vue'))
 
+// props
 const formRef = ref()
 const showSearch = ref(true)
-
 const { searchParam, loading, tableData, fetchData, search, reset } = useTable({
   fetchDataApi: getDeptTreeApi,
   isPage: false
 })
 
-// 删除当前行
+// methods
 const handleDelete = async (row: any) => {
   try {
     await useMessageBox().confirm(t('table.action.confirmDel'))

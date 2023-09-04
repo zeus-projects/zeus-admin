@@ -528,9 +528,29 @@ export default {
     title: '密码输入框',
     inputPasswordDes: '基于 ElementPlus 的 Input 组件二次封装'
   },
-  dialog: {
+
+  status: {
+    enable: '启用',
+    disable: '禁用',
+    display: '显示',
+    hidden: '隐藏'
+  },
+  action: {
+    add: '新增',
+    edit: '编辑',
+    view: '查看',
+    delete: '删除',
+    confirmDel: '是否确认删除?',
+    query: '查询',
+    search: '搜索',
+    reset: '重置',
+    submit: '提交',
+    confirm: '确认',
+    cancel: '取消',
     open: '打开',
-    close: '关闭'
+    close: '关闭',
+    upload: '上传',
+    download: '下载'
   },
   message: {
     success: '成功',
@@ -546,34 +566,13 @@ export default {
     downloadSuccess: '下载成功',
     downloadFailed: '下载失败'
   },
-  status: {
-    enable: '启用',
-    disable: '禁用'
-  },
   table: {
-    action: {
-      add: '新增',
-      edit: '编辑',
-      view: '查看',
-      delete: '删除',
-      confirmDel: '确认删除？',
-      query: '查询',
-      search: '搜索',
-      reset: '重置'
-    },
-    column: {
-      selection: '多选',
-      action: '操作',
-      createBy: '创建人',
-      createTime: '创建时间',
-      updateBy: '更新人',
-      updateTime: '更新时间'
-    }
-  },
-  form: {
-    submit: '提交',
-    confirm: '确认',
-    cancel: '取消'
+    selection: '多选',
+    action: '操作',
+    createBy: '创建人',
+    createTime: '创建时间',
+    updateBy: '更新人',
+    updateTime: '更新时间'
   },
   admin: {
     dept: {
@@ -595,7 +594,17 @@ export default {
       icon: '图标',
       path: '路由',
       type: '类型',
-      permission: '权限标识'
+      hidden: '隐藏',
+      permission: '权限标识',
+      nameTip: '请输入菜单名称',
+      parentIdTip: '请选择上级菜单',
+      pathTip: '请输入菜单路由路径',
+      sortTip: '请输入菜单排序权重',
+      iconTip: '请输入菜单图标，支持 iconify 图标',
+      permissionTip: '请输入菜单权限标识',
+      menuType: '菜单',
+      buttonType: '按钮',
+      rootMenu: '根菜单'
     }
   }
 }

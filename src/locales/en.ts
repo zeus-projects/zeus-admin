@@ -539,9 +539,29 @@ export default {
     title: 'InputPassword',
     inputPasswordDes: 'Secondary packaging of Input components based on ElementPlus'
   },
-  dialog: {
+
+  status: {
+    enable: 'Enable',
+    disable: 'Disable',
+    display: 'Display',
+    hidden: 'Hidden'
+  },
+  action: {
+    add: 'Add',
+    edit: 'Edit',
+    view: 'View',
+    delete: 'Delete',
+    confirmDel: 'Confirm delete?',
+    query: 'Query',
+    search: 'Search',
+    reset: 'Reset',
+    submit: 'Submit',
+    confirm: 'Confirm',
+    cancel: 'Cancel',
     open: 'Open',
-    close: 'Close'
+    close: 'Close',
+    upload: 'Upload',
+    download: 'Download'
   },
   message: {
     success: 'Success',
@@ -557,34 +577,13 @@ export default {
     downloadSuccess: 'Download successful',
     downloadFailed: 'Download failed'
   },
-  status: {
-    enable: 'Enable',
-    disable: 'Disable'
-  },
   table: {
-    action: {
-      add: 'Add',
-      edit: 'Edit',
-      view: 'View',
-      delete: 'Delete',
-      confirmDel: 'Confirm delete?',
-      query: 'Query',
-      search: 'Search',
-      reset: 'Reset'
-    },
-    column: {
-      selection: 'Selection',
-      action: 'Action',
-      createBy: 'CreateBy',
-      createTime: 'CreateTime',
-      updateBy: 'UpdateBy',
-      updateTime: 'UpdateTime'
-    }
-  },
-  form: {
-    submit: 'Submit',
-    confirm: 'Confirm',
-    cancel: 'Cancel'
+    selection: 'Selection',
+    action: 'Action',
+    createBy: 'CreateBy',
+    createTime: 'CreateTime',
+    updateBy: 'UpdateBy',
+    updateTime: 'UpdateTime'
   },
   admin: {
     dept: {
@@ -606,7 +605,17 @@ export default {
       icon: 'Icon',
       path: 'Path',
       type: 'Menu Type',
-      permission: 'Permissions'
+      hidden: 'Hidden',
+      permission: 'Permissions',
+      nameTip: 'Please enter the menu name',
+      parentIdTip: 'Please select a superior menu',
+      pathTip: 'Please enter the menu path',
+      sortTip: 'Please enter the menu sorting weight',
+      iconTip: 'Please enter a menu icon that supports iconify icons',
+      permissionTip: 'Please enter the menu permission word',
+      menuType: 'Menu',
+      buttonType: 'Button',
+      rootMenu: 'RootMenu'
     }
   }
 }
