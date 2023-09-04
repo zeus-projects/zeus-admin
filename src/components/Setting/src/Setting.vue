@@ -224,8 +224,8 @@ const clear = () => {
         v-model="systemTheme"
         :schema="[
           '#409eff',
-          '#009688',
           '#536dfe',
+          '#2E5CF6',
           '#ff5c93',
           '#ee4f12',
           '#0096c7',

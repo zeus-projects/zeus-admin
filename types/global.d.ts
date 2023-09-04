@@ -46,6 +46,7 @@ declare global {
   declare interface IResponse<T = any> {
     code: string
     data: T extends any ? T : T & any
+    message: string
   }
 
   declare interface ThemeTypes {
@@ -63,12 +64,6 @@ declare global {
     topHeaderTextColor?: string
     topHeaderHoverColor?: string
     topToolBorderColor?: string
-  }
-
-  declare interface R<T = any> {
-    code: string
-    data: T extends any ? T : T & any
-    msg: string
   }
 
   declare interface Page<T = any> {

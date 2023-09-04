@@ -54,6 +54,10 @@
   --app-footer-height: 50px;
 
   --transition-time-02: 0.2s;
+
+  /* element plus start */
+  --el-color-primary-light-3: #6c8cf8;
+  /* element plus end */
 }
 
 .dark {
