@@ -1,5 +1,4 @@
 import service from './service'
-
 import config from './config'
 
 const { defaultHeaders } = config
