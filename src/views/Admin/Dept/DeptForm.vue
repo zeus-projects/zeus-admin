@@ -2,7 +2,7 @@
   <Dialog
     v-model="visible"
     :title="type === 'edit' ? $t('action.edit') : $t('action.add')"
-    width="600px"
+    width="800px"
   >
     <el-form
       ref="formRef"
@@ -13,41 +13,31 @@
       label-suffix=":"
       shadow="hover"
     >
-      <el-row :gutter="6">
-        <el-col :span="24" class="mb1">
+      <el-row>
+        <el-col :span="12">
           <el-form-item :label="$t('admin.dept.parentId')" prop="parentId">
             <el-tree-select
               v-model="form.parentId"
               :data="parentData"
               :props="{ value: 'id', label: 'name', children: 'children' }"
               :placeholder="$t('admin.dept.parentIdTip')"
-              :render-after-expand="false"
-              style="width: 400px"
               check-strictly
+              accordion
               clearable
             />
           </el-form-item>
         </el-col>
-        <el-col :span="24" class="mb1">
+        <el-col :span="12">
           <el-form-item :label="$t('admin.dept.name')" prop="name">
-            <el-input
-              v-model="form.name"
-              :placeholder="$t('admin.dept.nameTip')"
-              clearable
-              style="width: 400px"
-            />
+            <el-input v-model="form.name" :placeholder="$t('admin.dept.nameTip')" clearable />
           </el-form-item>
         </el-col>
-        <el-col :span="24" class="mb1">
+        <el-col :span="12">
           <el-form-item :label="$t('admin.dept.sortOrder')" prop="sortOrder">
-            <el-input-number
-              v-model="form.sortOrder"
-              :placeholder="$t('admin.dept.sortTip')"
-              style="width: 400px"
-            />
+            <el-input-number v-model="form.sortOrder" :placeholder="$t('admin.dept.sortTip')" />
           </el-form-item>
         </el-col>
-        <el-col :span="24" class="mb1">
+        <el-col :span="12">
           <el-form-item :label="$t('admin.dept.status')" prop="status">
             <el-switch
               v-model="form.status"
@@ -55,9 +45,6 @@
               :inactive-text="$t('status.disable')"
               :active-value="0"
               :inactive-value="1"
-              style="
-
---el-switch-on-color: #13ce66"
             />
           </el-form-item>
         </el-col>

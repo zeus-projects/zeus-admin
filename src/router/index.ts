@@ -59,21 +59,31 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
   {
     path: '/dashboard',
     component: Layout,
+    redirect: '/dashboard/analysis',
     name: 'Dashboard',
-    redirect: '/dashboard/workplace',
     meta: {
-      title: t('router.dashboard')
+      title: t('router.dashboard'),
+      icon: 'ant-design:dashboard-filled',
+      alwaysShow: true
     },
     children: [
+      {
+        path: 'analysis',
+        component: () => import('@/views/Dashboard/Analysis.vue'),
+        name: 'Analysis',
+        meta: {
+          title: t('router.analysis'),
+          noCache: true,
+          affix: true
+        }
+      },
       {
         path: 'workplace',
         component: () => import('@/views/Dashboard/Workplace.vue'),
         name: 'Workplace',
         meta: {
           title: t('router.workplace'),
-          icon: 'ant-design:dashboard-filled',
-          noCache: true,
-          affix: true
+          noCache: true
         }
       }
     ]
@@ -103,6 +113,22 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         name: 'Menu',
         meta: {
           title: t('router.menuManagement')
+        }
+      },
+      {
+        path: 'role',
+        component: () => import('@/views/Admin/Role/Role.vue'),
+        name: 'Role',
+        meta: {
+          title: t('router.role')
+        }
+      },
+      {
+        path: 'user',
+        component: () => import('@/views/Admin/User/User.vue'),
+        name: 'User',
+        meta: {
+          title: t('router.user')
         }
       }
     ]

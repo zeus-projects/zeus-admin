@@ -36,11 +36,11 @@ export const useForm = (config: FormOption) => {
     () => state.actionType,
     (actionType) => {
       if (actionType === 'add') {
-        state.title = t('table.action.add')
+        state.title = t('action.add')
       } else if (actionType === 'edit') {
-        state.title = t('table.action.edit')
+        state.title = t('action.edit')
       } else {
-        state.title = t('table.action.view')
+        state.title = t('action.view')
       }
     }
   )

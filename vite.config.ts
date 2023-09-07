@@ -38,7 +38,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       progress(),
       AutoImport({
          imports:["vue","vue-router"],
-         dts:'src/auto-import.d.ts'    // 路径下自动生成文件夹存放全局指令
+         dts:'types/auto-import.d.ts'    // 路径下自动生成文件夹存放全局指令
        }),
       createStyleImportPlugin({
         resolves: [ElementPlusResolve()],

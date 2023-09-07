@@ -561,7 +561,8 @@ export default {
     open: 'Open',
     close: 'Close',
     upload: 'Upload',
-    download: 'Download'
+    download: 'Download',
+    grant: 'Grant'
   },
   message: {
     success: 'Success',
@@ -616,6 +617,17 @@ export default {
       menuType: 'Menu',
       buttonType: 'Button',
       rootMenu: 'RootMenu'
+    },
+    role: {
+      id: 'Role ID',
+      name: 'Role Name',
+      nameTip: 'Please enter the role name',
+      code: 'Role Code',
+      codeTip: 'Please enter the role code',
+      description: 'Description',
+      descriptionTip: 'Please enter the Description',
+      dataScopeType: 'DataScopeType',
+      dataScope: 'DataScope'
     }
   }
 }

@@ -9,7 +9,7 @@
       shadow="hover"
     >
       <el-row :gutter="0">
-        <el-col :span="12" class="mb1">
+        <el-col :span="12">
           <el-form-item :label="$t('admin.menu.type')" prop="type">
             <el-radio-group v-model="form.type">
               <el-radio-button label="menu"> {{ $t('admin.menu.menuType') }} </el-radio-button>
@@ -18,7 +18,7 @@
           </el-form-item>
         </el-col>
 
-        <el-col :span="12" class="mb1">
+        <el-col :span="12">
           <el-form-item :label="$t('admin.menu.parentId')" prop="parentId">
             <el-tree-select
               v-model="form.parentId"
@@ -27,19 +27,20 @@
               :placeholder="$t('admin.menu.parentIdTip')"
               :render-after-expand="false"
               style="width: 285px"
+              accordion
               check-strictly
               clearable
             />
           </el-form-item>
         </el-col>
 
-        <el-col :span="12" class="mb1">
+        <el-col :span="24">
           <el-form-item :label="$t('admin.menu.name')" prop="name">
             <el-input v-model="form.name" :placeholder="$t('admin.menu.nameTip')" clearable />
           </el-form-item>
         </el-col>
 
-        <el-col :span="12" class="mb1" v-if="form.type === 'button'">
+        <el-col :span="12" v-if="form.type === 'button'">
           <el-form-item :label="$t('admin.menu.permission')" prop="permission">
             <el-input
               v-model="form.permission"
@@ -49,13 +50,19 @@
           </el-form-item>
         </el-col>
 
-        <el-col :span="12" class="mb1" v-if="form.type === 'menu'">
+        <el-col :span="24" v-if="form.type === 'menu'">
           <el-form-item :label="$t('admin.menu.path')" prop="path">
             <el-input v-model="form.path" :placeholder="$t('admin.menu.pathTip')" clearable />
           </el-form-item>
         </el-col>
 
-        <el-col :span="12" class="mb1">
+        <el-col :span="24" v-if="form.type === 'menu'">
+          <el-form-item :label="$t('admin.menu.icon')" prop="icon">
+            <el-input v-model="form.icon" :placeholder="$t('admin.menu.iconTip')" />
+          </el-form-item>
+        </el-col>
+
+        <el-col :span="12">
           <el-form-item :label="$t('admin.menu.sortOrder')" prop="sortOrder">
             <el-input-number
               v-model="form.sortOrder"
@@ -66,13 +73,8 @@
             />
           </el-form-item>
         </el-col>
-        <el-col :span="12" class="mb1" v-if="form.type === 'menu'">
-          <el-form-item :label="$t('admin.menu.icon')" prop="icon">
-            <el-input v-model="form.icon" :placeholder="$t('admin.menu.iconTip')" />
-          </el-form-item>
-        </el-col>
 
-        <el-col :span="12" class="mb1" v-if="form.type === 'menu'">
+        <el-col :span="12" v-if="form.type === 'menu'">
           <el-form-item :label="$t('admin.menu.hidden')" prop="hidden">
             <el-radio-group v-model="form.hidden">
               <el-radio-button label="0"> {{ $t('status.display') }} </el-radio-button>
@@ -113,7 +115,7 @@ import { useMessage } from '@/hooks/web/useMessage'
 
 const { t } = useI18n()
 
-const formRef = ref<ComponentRef<typeof ElForm>>()
+const formRef = ref()
 const form = reactive<SysMenu>({
   id: 0,
   type: 'menu',
@@ -169,11 +171,11 @@ watch(
   () => state.actionType,
   (actionType) => {
     if (actionType === 'add') {
-      state.title = t('table.action.add')
+      state.title = t('action.add')
     } else if (actionType === 'edit') {
-      state.title = t('table.action.edit')
+      state.title = t('action.edit')
     } else {
-      state.title = t('table.action.view')
+      state.title = t('action.view')
     }
   }
 )

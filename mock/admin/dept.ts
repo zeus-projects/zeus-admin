@@ -46,7 +46,21 @@ export default [
         data: {
           code: code,
           data: Mock.mock('@integer(13)'),
-          message: ''
+          message: 'ok'
+        }
+      }
+    }
+  },
+  {
+    url: '/admin/dept',
+    method: 'put',
+    timeout,
+    response: () => {
+      return {
+        data: {
+          code: code,
+          data: true,
+          message: 'ok'
         }
       }
     }

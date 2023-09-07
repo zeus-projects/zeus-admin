@@ -528,7 +528,6 @@ export default {
     title: '密码输入框',
     inputPasswordDes: '基于 ElementPlus 的 Input 组件二次封装'
   },
-
   status: {
     enable: '启用',
     disable: '禁用',
@@ -550,7 +549,8 @@ export default {
     open: '打开',
     close: '关闭',
     upload: '上传',
-    download: '下载'
+    download: '下载',
+    grant: '授权'
   },
   message: {
     success: '成功',
@@ -605,6 +605,17 @@ export default {
       menuType: '菜单',
       buttonType: '按钮',
       rootMenu: '根菜单'
+    },
+    role: {
+      id: '角色id',
+      name: '角色名称',
+      nameTip: '请输入角色名称',
+      code: '角色标识',
+      codeTip: '请输入角色权限标识',
+      description: '描述',
+      descriptionTip: '请输入角色描述',
+      dataScopeType: '数据权限',
+      dataScope: '数据权限'
     }
   }
 }

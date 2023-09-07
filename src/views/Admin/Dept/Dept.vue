@@ -36,17 +36,17 @@
       row-key="id"
       default-expand-all
       :tree-props="{ children: 'children', hasChildren: 'hasChildren' }"
-      border
+      show-overflow-tooltip
     >
       <el-table-column :label="$t('admin.dept.name')" prop="name" />
-      <el-table-column :label="$t('admin.dept.status')" prop="status">
+      <el-table-column :label="$t('admin.dept.status')" prop="status" align="center">
         <template #default="scope">
           <el-tag v-if="scope.row.status === 0" type="success"> {{ t('status.enable') }} </el-tag>
           <el-tag v-else type="danger"> {{ t('status.disable') }} </el-tag>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('admin.dept.sortOrder')" prop="sortOrder" />
-      <el-table-column :label="$t('table.action')" show-overflow-tooltip>
+      <el-table-column :label="$t('admin.dept.sortOrder')" prop="sortOrder" align="center" />
+      <el-table-column :label="$t('table.action')" align="center">
         <template #default="{ row }">
           <el-button
             text
@@ -112,7 +112,7 @@ const { searchParam, loading, tableData, fetchData, search, reset } = useTable({
 // methods
 const handleDelete = async (row: any) => {
   try {
-    await useMessageBox().confirm(t('table.action.confirmDel'))
+    await useMessageBox().confirm(t('action.confirmDel'))
   } catch {
     return
   }

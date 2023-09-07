@@ -91,18 +91,12 @@ export const useTable = (config: TableOption) => {
 
   const fetchData = async () => {
     state.loading = true
-    console.group('fetchData')
     try {
-      console.log('fetchDataApi param', state.totalParam)
-
       // 请求数据
       let res = await fetchDataApi(state.totalParam)
-      console.log('fetchDataApi res', res)
-
       // 数据回调函数
       if (dataCallBack) {
         res = await dataCallBack(res)
-        console.log('dataCallBack res', res)
       }
       if (isPage) {
         state.tableData = res.data.records
@@ -110,13 +104,11 @@ export const useTable = (config: TableOption) => {
       } else {
         state.tableData = res.data
       }
-      console.log('tableData', state.tableData)
     } catch (err) {
       console.error('fetchData error!', err)
     } finally {
       state.loading = false
     }
-    console.groupEnd()
   }
 
   const search = () => {
@@ -135,7 +127,6 @@ export const useTable = (config: TableOption) => {
         state.searchParam[key] = defaultParam[key]
       })
     }
-    console.log('reset searchParam', state.searchParam)
     search()
   }
 

@@ -65,8 +65,6 @@ axiosInstance.interceptors.request.use(
 // 响应拦截器
 axiosInstance.interceptors.response.use(
   (response: AxiosResponse<any>) => {
-    console.log('axios response', response)
-
     // 处理 abortController
     const url = response.config.url || ''
     abortControllerMap.delete(url)

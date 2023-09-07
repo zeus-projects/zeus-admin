@@ -67,9 +67,9 @@ declare global {
   }
 
   declare interface Page<T = any> {
-    size: number
-    current: number
-    total: number
-    records: []
+    size?: number
+    current?: number
+    total?: number
+    records?: []
   }
 }
